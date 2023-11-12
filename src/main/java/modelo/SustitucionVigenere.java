@@ -6,8 +6,19 @@ package modelo;
 
 /**
  *
- * @author dylan
+ * @author Dylan Montiel Zúñiga
+ * @version 1.0
  */
-public class SustitucionVigenere {
+public class SustitucionVigenere extends CifradoClasico {
+
+  @Override
+  public String cifrar(String msj) {
+    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+  }
+
+  @Override
+  public String descifrar(String msj) {
+    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+  }
   
 }
