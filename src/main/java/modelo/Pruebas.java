@@ -43,5 +43,23 @@ public class Pruebas {
     // Descifrar el mensaje
     String msjDescifrado1 = cifradoPorLlave.descifrar(msjCifrado1);
     System.out.println("Mensaje Descifrado: " + msjDescifrado1);    
-  }
+  
+    System.out.println("\n");
+    
+    // Instanciar el objeto cifradoPorLlave
+    SustitucionVigenere sustitucionVigenere = new SustitucionVigenere("23");
+    System.out.println("Cifrado Vigenere");
+    
+    // Mensaje original
+    String msjOriginal2 = "tarea programada de codificacion";
+    System.out.println("Mensaje Original: " + msjOriginal2);
+    
+    // Cifrar el mensaje
+    String msjCifrado2 = sustitucionVigenere.cifrar(msjOriginal2);
+    System.out.println("Mensaje Cifrado: " + msjCifrado1);
+    
+    // Descifrar el mensaje
+    String msjDescifrado2 = sustitucionVigenere.descifrar(msjCifrado2);
+    System.out.println("Mensaje Descifrado: " + msjDescifrado2);    
+  }  
 }

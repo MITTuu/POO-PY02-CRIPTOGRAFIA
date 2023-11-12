@@ -27,7 +27,6 @@ public class CifradoPorLlave extends CifradoClasico {
   @Override
   public String cifrar(String msj) {
     StringBuilder msjCifrado = new StringBuilder();
-    msj = msj.toLowerCase(); // Convertir el mensaje a minúsculas para consistencia
     int indiceClave = 0; // Índice para recorrer la clave
 
     for (char caracter : msj.toCharArray()) {
