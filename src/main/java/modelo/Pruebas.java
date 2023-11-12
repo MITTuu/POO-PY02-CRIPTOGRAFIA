@@ -61,5 +61,5 @@ public class Pruebas {
     // Descifrar el mensaje
     String msjDescifrado2 = sustitucionVigenere.descifrar(msjCifrado2);
     System.out.println("Mensaje Descifrado: " + msjDescifrado2);    
-  }  
+  }
 }
