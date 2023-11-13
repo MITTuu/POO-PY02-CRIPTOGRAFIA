@@ -11,6 +11,8 @@ package modelo;
  */
 public class Pruebas {
   public static void main(String[] args) {
+    
+    /*
     // Instanciar el objeto cifradoCesar
     CifradoCesar cifradoCesar = new CifradoCesar();
     System.out.println("Cifrado Cesar");
@@ -43,6 +45,29 @@ public class Pruebas {
     // Descifrar el mensaje
     String msjDescifrado1 = cifradoPorLlave.descifrar(msjCifrado1);
     System.out.println("Mensaje Descifrado: " + msjDescifrado1);    
-    //game
+    */
+    CifradoDES_V2 cifrar = new CifradoDES_V2();
+    
+    CifradoAES cifra = new CifradoAES();
+    
+    CifradoTripleDES ni = new CifradoTripleDES();
+    
+    //String nada = "lt/1jm7Bn2Lbz2pNqmFNvoS1HtNFezZrDyVsEVGeqn0=";
+    
+    String nada = "Este mensaje sera cifrado.";
+    
+    String na1 = ni.cifrado(nada);
+    //ni.setContrasena();
+    System.out.println(na1);
+    
+    CifradoDES_V2 cifrar1 = new CifradoDES_V2();
+    CifradoAES cifra1 = new CifradoAES();
+    CifradoTripleDES ni1 = new CifradoTripleDES();
+    
+    String na2 = ni.descifrado(na1);
+    System.out.println(na2);
+    
+    
+    
   }
 }
