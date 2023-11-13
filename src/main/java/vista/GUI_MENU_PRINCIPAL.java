@@ -4,20 +4,45 @@
  */
 package vista;
 
+import controlador.*;
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import modelo.ManejoArchivos;
+
 /**
  *
- * @author dylan
+ * @author Dylan Montiel Zúñiga
+ * @version 1.0
  */
 public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
 
   /**
    * Creates new form GUI_MENU_PRINCIPAL
    */
+  Controlador_GUI_MENU_PRINCIPAL controlador_GUI_MENU_PRINCIPAL;
   public GUI_MENU_PRINCIPAL() {
     initComponents();
     setLocationRelativeTo(null);
+    controlador_GUI_MENU_PRINCIPAL = new Controlador_GUI_MENU_PRINCIPAL(this);
+    Jbtn_Salir.addActionListener(controlador_GUI_MENU_PRINCIPAL);
+    Jbtn_AbrirTXT.addActionListener(controlador_GUI_MENU_PRINCIPAL);
   }
 
+  public void abrirArchivo() {
+    JFileChooser fileChooser = new JFileChooser();
+    FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de texto", "txt");
+    fileChooser.setFileFilter(filter);
+
+    int resultado = fileChooser.showOpenDialog(this);
+
+    if (resultado == JFileChooser.APPROVE_OPTION) {
+      File archivoSeleccionado = fileChooser.getSelectedFile();
+      String contenido = ManejoArchivos.leerArchivo(archivoSeleccionado.getAbsolutePath());
+      Jta_Entrada.setText(contenido);
+    }
+  }
+  
   /**
    * This method is called from within the constructor to initialize the form.
    * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,32 +52,140 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    JP_ContenidoGeneral = new javax.swing.JPanel();
+    Jp_Opciones = new javax.swing.JPanel();
+    Jl_OperacionRealizar = new javax.swing.JLabel();
+    Jcb_Operacion = new javax.swing.JComboBox<>();
+    Jl_Algoritmo = new javax.swing.JLabel();
+    Jcb_Algoritmo = new javax.swing.JComboBox<>();
+    Jta_Entrada = new java.awt.TextArea();
+    textArea1 = new java.awt.TextArea();
+    Jl_Entrada = new javax.swing.JLabel();
+    Jl_Salida = new javax.swing.JLabel();
+    Jbtn_AbrirTXT = new javax.swing.JButton();
+    Jbtn_AplicarAlgoritmo = new javax.swing.JButton();
+    Jbtn_EnviarCorreo = new javax.swing.JButton();
+    Jbtn_Salir = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-    JP_ContenidoGeneral.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
+    Jp_Opciones.setBackground(new java.awt.Color(255, 255, 255));
 
-    javax.swing.GroupLayout JP_ContenidoGeneralLayout = new javax.swing.GroupLayout(JP_ContenidoGeneral);
-    JP_ContenidoGeneral.setLayout(JP_ContenidoGeneralLayout);
-    JP_ContenidoGeneralLayout.setHorizontalGroup(
-      JP_ContenidoGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 750, Short.MAX_VALUE)
+    Jl_OperacionRealizar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+    Jl_OperacionRealizar.setText("Operación a realizar:");
+
+    Jcb_Operacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cifrado", "Descifrado" }));
+
+    Jl_Algoritmo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+    Jl_Algoritmo.setText("Algoritmo:");
+
+    Jcb_Algoritmo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cifrado César", "Cifrado por Llave", "Sustitución Vigenére" }));
+
+    javax.swing.GroupLayout Jp_OpcionesLayout = new javax.swing.GroupLayout(Jp_Opciones);
+    Jp_Opciones.setLayout(Jp_OpcionesLayout);
+    Jp_OpcionesLayout.setHorizontalGroup(
+      Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(Jp_OpcionesLayout.createSequentialGroup()
+        .addGap(12, 12, 12)
+        .addComponent(Jl_OperacionRealizar)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(Jcb_Operacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(Jl_Algoritmo)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(Jcb_Algoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(198, 198, 198))
     );
-    JP_ContenidoGeneralLayout.setVerticalGroup(
-      JP_ContenidoGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 550, Short.MAX_VALUE)
+    Jp_OpcionesLayout.setVerticalGroup(
+      Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(Jp_OpcionesLayout.createSequentialGroup()
+        .addGap(20, 20, 20)
+        .addGroup(Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(Jl_OperacionRealizar)
+          .addComponent(Jcb_Operacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(Jl_Algoritmo)
+          .addComponent(Jcb_Algoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addContainerGap(21, Short.MAX_VALUE))
     );
+
+    Jta_Entrada.setEditable(false);
+
+    textArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
+    Jl_Entrada.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+    Jl_Entrada.setText("Entrada");
+
+    Jl_Salida.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+    Jl_Salida.setText("Salida");
+
+    Jbtn_AbrirTXT.setText("Abrir archivo TXT");
+
+    Jbtn_AplicarAlgoritmo.setText("Aplicar algorítmo");
+
+    Jbtn_EnviarCorreo.setText("Enviar por correo");
+
+    Jbtn_Salir.setText("Salir");
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(JP_ContenidoGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(Jp_Opciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addGroup(layout.createSequentialGroup()
+        .addGap(318, 318, 318)
+        .addComponent(Jbtn_AplicarAlgoritmo)
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+      .addGroup(layout.createSequentialGroup()
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addGroup(layout.createSequentialGroup()
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Jbtn_Salir)
+            .addGap(189, 189, 189)
+            .addComponent(Jbtn_EnviarCorreo))
+          .addGroup(layout.createSequentialGroup()
+            .addGap(30, 30, 30)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(Jl_Entrada)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Jbtn_AbrirTXT))
+              .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                  .addComponent(Jta_Entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(Jl_Salida))
+                .addGap(0, 0, Short.MAX_VALUE)))))
+        .addContainerGap(30, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(JP_ContenidoGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addGroup(layout.createSequentialGroup()
+        .addComponent(Jp_Opciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(layout.createSequentialGroup()
+            .addGap(21, 21, 21)
+            .addComponent(Jl_Entrada))
+          .addGroup(layout.createSequentialGroup()
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(Jbtn_AbrirTXT)))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(Jta_Entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(26, 26, 26)
+        .addComponent(Jbtn_AplicarAlgoritmo)
+        .addGap(7, 7, 7)
+        .addComponent(Jl_Salida)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(layout.createSequentialGroup()
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(27, 27, 27)
+            .addComponent(Jbtn_EnviarCorreo)
+            .addContainerGap(27, Short.MAX_VALUE))
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Jbtn_Salir)
+            .addGap(15, 15, 15))))
     );
 
     pack();
@@ -94,6 +227,18 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JPanel JP_ContenidoGeneral;
+  private javax.swing.JButton Jbtn_AbrirTXT;
+  private javax.swing.JButton Jbtn_AplicarAlgoritmo;
+  private javax.swing.JButton Jbtn_EnviarCorreo;
+  private javax.swing.JButton Jbtn_Salir;
+  private javax.swing.JComboBox<String> Jcb_Algoritmo;
+  private javax.swing.JComboBox<String> Jcb_Operacion;
+  private javax.swing.JLabel Jl_Algoritmo;
+  private javax.swing.JLabel Jl_Entrada;
+  private javax.swing.JLabel Jl_OperacionRealizar;
+  private javax.swing.JLabel Jl_Salida;
+  private javax.swing.JPanel Jp_Opciones;
+  private java.awt.TextArea Jta_Entrada;
+  private java.awt.TextArea textArea1;
   // End of variables declaration//GEN-END:variables
 }
