@@ -22,18 +22,16 @@ public class CifradoDES_V2 {
     setLlave();
     try {
       if (pCadena != null) {
-        // Codificar la cadena a bytes usando utf-8
-        byte[] utf8 = pCadena.getBytes("UTF8");
-
-        // Cifrar
-        byte[] enc = encriptador.doFinal(utf8);
-
-        // Codificar bytes a base64 para obtener cadena
-        enc = BASE64EncoderStream.encode(enc);
         
-        //byte[] resultado = enc;
+        byte[] formato = pCadena.getBytes("UTF8");// Medimos el largo
 
-        return new String(enc);
+        byte[] resultado = encriptador.doFinal(formato);
+
+        resultado = BASE64EncoderStream.encode(resultado);
+        
+        String finalizado  = new String(resultado);
+       
+        return finalizado;//new String(resultado);
       }
     } catch (Exception e) {
       e.printStackTrace();
@@ -48,13 +46,14 @@ public class CifradoDES_V2 {
     try {
       if (pCadena != null) {
         // Decodificar base64 para obtener bytes
-        byte[] dec = BASE64DecoderStream.decode(pCadena.getBytes());
+        byte[] decodificar = BASE64DecoderStream.decode(pCadena.getBytes());
 
         // Descifrar
-        byte[] utf8 = desencriptador.doFinal(dec);
-
+        byte[] formato = desencriptador.doFinal(decodificar);
+        
+        String resultado = new String(formato, "UTF8");
         // Crear nueva cadena basada en utf-8
-        return new String(utf8, "UTF8");
+        return resultado; //new String(formato, "UTF8");
       }
     } catch (Exception e) {
       e.printStackTrace();

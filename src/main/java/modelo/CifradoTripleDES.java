@@ -58,24 +58,27 @@ public class CifradoTripleDES {
   }  
   
   public String cifrado(String pCadena){
-        try {
-            if (pCadena != null) {
-                // Codificar la cadena a bytes usando utf-8
-                byte[] utf8 = pCadena.getBytes("UTF8");
+    try {
+      if (pCadena != null) {
+        // Codificar la cadena a bytes usando utf-8
+        byte[] formato = pCadena.getBytes("UTF8");
 
-                // Cifrar
-                byte[] enc = encriptador.doFinal(utf8);
+        // Cifrar
+        byte[] codificado = encriptador.doFinal(formato);
 
-                // Codificar bytes a base64 para obtener cadena
-                enc = BASE64EncoderStream.encode(enc);
+        // Codificar bytes a base64 para obtener cadena
+        codificado = BASE64EncoderStream.encode(codificado);
+        String resultado = new String(codificado); 
+                
 
-                return new String(enc);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        //return null;  
+        return resultado;//new String(codificado);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+        
     return null;
+    
   }
   
   
@@ -83,14 +86,13 @@ public class CifradoTripleDES {
 
     try {
       if (pCadena != null) {
-        // Decodificar base64 para obtener bytes
-        byte[] dec = BASE64DecoderStream.decode(pCadena.getBytes());
+        
+        byte[] decodificar = BASE64DecoderStream.decode(pCadena.getBytes());
 
-        // Descifrar
-        byte[] utf8 = desencriptador.doFinal(dec);
-
-        // Crear nueva cadena basada en utf-8
-        return new String(utf8, "UTF8");
+        byte[] formato = desencriptador.doFinal(decodificar);
+        String resultado = new String(formato, "UTF8");
+ 
+        return resultado;//new String(formato, "UTF8");
       }
     } catch (Exception e) {
       e.printStackTrace();

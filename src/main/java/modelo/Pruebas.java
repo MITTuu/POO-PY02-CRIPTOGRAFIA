@@ -56,7 +56,7 @@ public class Pruebas {
     
     String nada = "Este mensaje sera cifrado.";
     
-    String na1 = ni.cifrado(nada);
+    String na1 = cifra.cifrado(nada);
     //ni.setContrasena();
     System.out.println(na1);
     
@@ -64,7 +64,7 @@ public class Pruebas {
     CifradoAES cifra1 = new CifradoAES();
     CifradoTripleDES ni1 = new CifradoTripleDES();
     
-    String na2 = ni.descifrado(na1);
+    String na2 = cifra1.descifrado(na1);
     System.out.println(na2);
     
     
