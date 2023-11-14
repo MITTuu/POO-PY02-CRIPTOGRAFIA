@@ -7,8 +7,9 @@ package vista;
 import controlador.*;
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import modelo.ManejoArchivos;
+import modelo.*;
 
 /**
  *
@@ -20,16 +21,18 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
   /**
    * Creates new form GUI_MENU_PRINCIPAL
    */
-  Controlador_GUI_MENU_PRINCIPAL controlador_GUI_MENU_PRINCIPAL;
+  private Controlador_GUI_MENU_PRINCIPAL controlador_GUI_MENU_PRINCIPAL;
+  
   public GUI_MENU_PRINCIPAL() {
     initComponents();
     setLocationRelativeTo(null);
     controlador_GUI_MENU_PRINCIPAL = new Controlador_GUI_MENU_PRINCIPAL(this);
     Jbtn_Salir.addActionListener(controlador_GUI_MENU_PRINCIPAL);
     Jbtn_AbrirTXT.addActionListener(controlador_GUI_MENU_PRINCIPAL);
+    Jbtn_AplicarAlgoritmo.addActionListener(controlador_GUI_MENU_PRINCIPAL);
   }
 
-  public void abrirArchivo() {
+  public void abrirTXT() {
     JFileChooser fileChooser = new JFileChooser();
     FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de texto", "txt");
     fileChooser.setFileFilter(filter);
@@ -40,6 +43,27 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
       File archivoSeleccionado = fileChooser.getSelectedFile();
       String contenido = ManejoArchivos.leerArchivo(archivoSeleccionado.getAbsolutePath());
       Jta_Entrada.setText(contenido);
+    }
+  }
+  
+  public void aplicarAlgoritmo() {
+    if (Jta_Entrada.getText().isEmpty()) {
+      JOptionPane.showMessageDialog(this, "Debes abrir un archivo para aplicar algún algorítmo", "Error", JOptionPane.ERROR_MESSAGE);                
+    }
+    String operacion = Jcb_Operacion.getSelectedItem().toString().trim();
+    String algoritmo = Jcb_Algoritmo.getSelectedItem().toString().trim();
+    String contenido = Jta_Entrada.getText();
+    
+    switch (algoritmo) {
+      case "Cifrado César":
+        CifradoCesar cifradoCesar = new CifradoCesar();
+        if (operacion == "Cifrado") {
+          contenido = cifradoCesar.cifrar(contenido);
+        } else {
+          contenido = cifradoCesar.descifrar(contenido);
+        }
+        Jta_Salida.setText(contenido);
+        break;
     }
   }
   
@@ -57,16 +81,17 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
     Jcb_Operacion = new javax.swing.JComboBox<>();
     Jl_Algoritmo = new javax.swing.JLabel();
     Jcb_Algoritmo = new javax.swing.JComboBox<>();
-    Jta_Entrada = new java.awt.TextArea();
-    textArea1 = new java.awt.TextArea();
     Jl_Entrada = new javax.swing.JLabel();
-    Jl_Salida = new javax.swing.JLabel();
+    Jta_Entrada = new java.awt.TextArea();
     Jbtn_AbrirTXT = new javax.swing.JButton();
     Jbtn_AplicarAlgoritmo = new javax.swing.JButton();
-    Jbtn_EnviarCorreo = new javax.swing.JButton();
+    Jl_Salida = new javax.swing.JLabel();
     Jbtn_Salir = new javax.swing.JButton();
+    Jbtn_EnviarCorreo = new javax.swing.JButton();
+    Jta_Salida = new java.awt.TextArea();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    setBackground(new java.awt.Color(255, 255, 255));
 
     Jp_Opciones.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -80,6 +105,27 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
 
     Jcb_Algoritmo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cifrado César", "Cifrado por Llave", "Sustitución Vigenére" }));
 
+    Jl_Entrada.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+    Jl_Entrada.setText("Entrada");
+
+    Jta_Entrada.setEditable(false);
+    Jta_Entrada.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+    Jbtn_AbrirTXT.setText("Abrir archivo TXT");
+
+    Jbtn_AplicarAlgoritmo.setText("Aplicar algorítmo");
+    Jbtn_AplicarAlgoritmo.setActionCommand("Aplicar algoritmo");
+
+    Jl_Salida.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+    Jl_Salida.setText("Salida");
+
+    Jbtn_Salir.setText("Salir");
+
+    Jbtn_EnviarCorreo.setText("Enviar por correo");
+
+    Jta_Salida.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+    Jta_Salida.setEditable(false);
+
     javax.swing.GroupLayout Jp_OpcionesLayout = new javax.swing.GroupLayout(Jp_Opciones);
     Jp_Opciones.setLayout(Jp_OpcionesLayout);
     Jp_OpcionesLayout.setHorizontalGroup(
@@ -89,11 +135,37 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
         .addComponent(Jl_OperacionRealizar)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addComponent(Jcb_Operacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addGap(18, 18, Short.MAX_VALUE)
         .addComponent(Jl_Algoritmo)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addComponent(Jcb_Algoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(198, 198, 198))
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Jp_OpcionesLayout.createSequentialGroup()
+        .addContainerGap(30, Short.MAX_VALUE)
+        .addGroup(Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Jp_OpcionesLayout.createSequentialGroup()
+            .addGroup(Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+              .addGroup(Jp_OpcionesLayout.createSequentialGroup()
+                .addComponent(Jl_Entrada)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Jbtn_AbrirTXT))
+              .addComponent(Jta_Entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(30, 30, 30))
+          .addGroup(Jp_OpcionesLayout.createSequentialGroup()
+            .addGroup(Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+              .addComponent(Jbtn_EnviarCorreo)
+              .addGroup(Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(Jl_Salida, javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(Jta_Salida, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+      .addGroup(Jp_OpcionesLayout.createSequentialGroup()
+        .addGap(318, 318, 318)
+        .addComponent(Jbtn_AplicarAlgoritmo)
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Jp_OpcionesLayout.createSequentialGroup()
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(Jbtn_Salir)
+        .addGap(340, 340, 340))
     );
     Jp_OpcionesLayout.setVerticalGroup(
       Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,88 +176,36 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
           .addComponent(Jcb_Operacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(Jl_Algoritmo)
           .addComponent(Jcb_Algoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addContainerGap(21, Short.MAX_VALUE))
+        .addGap(25, 25, 25)
+        .addGroup(Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(Jl_Entrada)
+          .addComponent(Jbtn_AbrirTXT))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(Jta_Entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(22, 22, 22)
+        .addComponent(Jbtn_AplicarAlgoritmo)
+        .addGap(18, 18, 18)
+        .addComponent(Jl_Salida)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(Jta_Salida, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(19, 19, 19)
+        .addComponent(Jbtn_EnviarCorreo)
+        .addGap(18, 18, 18)
+        .addComponent(Jbtn_Salir)
+        .addContainerGap(26, Short.MAX_VALUE))
     );
-
-    Jta_Entrada.setEditable(false);
-
-    textArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
-    Jl_Entrada.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-    Jl_Entrada.setText("Entrada");
-
-    Jl_Salida.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-    Jl_Salida.setText("Salida");
-
-    Jbtn_AbrirTXT.setText("Abrir archivo TXT");
-
-    Jbtn_AplicarAlgoritmo.setText("Aplicar algorítmo");
-
-    Jbtn_EnviarCorreo.setText("Enviar por correo");
-
-    Jbtn_Salir.setText("Salir");
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addComponent(Jp_Opciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-      .addGroup(layout.createSequentialGroup()
-        .addGap(318, 318, 318)
-        .addComponent(Jbtn_AplicarAlgoritmo)
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-      .addGroup(layout.createSequentialGroup()
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addGroup(layout.createSequentialGroup()
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Jbtn_Salir)
-            .addGap(189, 189, 189)
-            .addComponent(Jbtn_EnviarCorreo))
-          .addGroup(layout.createSequentialGroup()
-            .addGap(30, 30, 30)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE))
-              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(Jl_Entrada)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Jbtn_AbrirTXT))
-              .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addComponent(Jta_Entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addComponent(Jl_Salida))
-                .addGap(0, 0, Short.MAX_VALUE)))))
-        .addContainerGap(30, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
         .addComponent(Jp_Opciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(layout.createSequentialGroup()
-            .addGap(21, 21, 21)
-            .addComponent(Jl_Entrada))
-          .addGroup(layout.createSequentialGroup()
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(Jbtn_AbrirTXT)))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(Jta_Entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(26, 26, 26)
-        .addComponent(Jbtn_AplicarAlgoritmo)
-        .addGap(7, 7, 7)
-        .addComponent(Jl_Salida)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(layout.createSequentialGroup()
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(27, 27, 27)
-            .addComponent(Jbtn_EnviarCorreo)
-            .addContainerGap(27, Short.MAX_VALUE))
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Jbtn_Salir)
-            .addGap(15, 15, 15))))
+        .addGap(0, 0, Short.MAX_VALUE))
     );
 
     pack();
@@ -239,6 +259,6 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
   private javax.swing.JLabel Jl_Salida;
   private javax.swing.JPanel Jp_Opciones;
   private java.awt.TextArea Jta_Entrada;
-  private java.awt.TextArea textArea1;
+  private java.awt.TextArea Jta_Salida;
   // End of variables declaration//GEN-END:variables
 }

@@ -25,7 +25,10 @@ public class Controlador_GUI_MENU_PRINCIPAL implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent evento) {
     if (evento.getActionCommand().equals("Abrir archivo TXT")) {
-      gui_menu_principal.abrirArchivo();
+      gui_menu_principal.abrirTXT();
+    }
+    if (evento.getActionCommand().equals("Aplicar algoritmo")) {
+      gui_menu_principal.aplicarAlgoritmo();
     }
     if (evento.getActionCommand().equals("Salir")) {
       System.exit(0);   
