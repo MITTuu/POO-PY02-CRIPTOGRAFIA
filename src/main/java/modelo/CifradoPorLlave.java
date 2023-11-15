@@ -9,19 +9,11 @@ package modelo;
  * @author Dylan Montiel Zúñiga
  * @version 3.0
  */
-public class CifradoPorLlave extends CifradoClasico {
+public class CifradoPorLlave extends CifradoClasico {  
   private String clave;
-  
   public CifradoPorLlave(String pClave) {
-    setClave(pClave);
-  }
-
-  // Métodos accesores
-  public String getClave() {
-    return clave;
-  }
-  public void setClave(String pClave) {
-    this.clave = pClave;
+    super(pClave);
+    clave = super.getClave();
   }
 
   @Override

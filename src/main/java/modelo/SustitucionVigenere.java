@@ -13,16 +13,9 @@ public class SustitucionVigenere extends CifradoClasico {
   private String clave;
 
   public SustitucionVigenere(String pClave) {
-    setClave(pClave);
+    super(pClave); 
+    clave = super.getClave();
   }
-
-  // Métodos accesores
-  public String getClave() {
-    return clave;
-  }
-  public void setClave(String pClave) {
-    this.clave = pClave;
-  }  
 
   @Override
   public String cifrar(String msj) {
@@ -65,7 +58,7 @@ public class SustitucionVigenere extends CifradoClasico {
   public String descifrar(String msj) {
     StringBuilder msjDescifrado = new StringBuilder();
     String[] lineas = msj.split("\n");
-    
+
     for (String linea : lineas) {
       String[] palabras = linea.split("\\s+"); // Dividir el texto en palabras
 
