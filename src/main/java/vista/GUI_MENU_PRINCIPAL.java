@@ -35,6 +35,7 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
     Jbtn_Limpiar.addActionListener(controlador_GUI_MENU_PRINCIPAL);
     Jtf_Clave.setEnabled(false);
     Jcb_Algoritmo.addActionListener(controlador_GUI_MENU_PRINCIPAL);
+    Jbtn_EnviarCorreo.addActionListener(controlador_GUI_MENU_PRINCIPAL);
   }
 
   public void abrirTXT() {
@@ -132,7 +133,33 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
         Jtf_Clave.setEnabled(false);
     }    
   }
-  
+
+  public void enviarCorreo() {
+    String correoDestinatario = Jtf_CorreoDestinatario.getText().trim();
+    String contenido = Jta_Salida.getText();
+    String operacion = Jcb_Operacion.getSelectedItem().toString().trim();
+    String algoritmo = Jcb_Algoritmo.getSelectedItem().toString().trim();    
+    
+    if (!validarCorreo(correoDestinatario)) {
+      // Mostrar mensaje de error para el correo
+      JOptionPane.showMessageDialog(this, "Debes ingresar un correo válido", "Error", JOptionPane.ERROR_MESSAGE);
+      return;
+    }    
+    
+    CuentaCorreo cuentaCorreo = new CuentaCorreo("py02.cifradodemensajes@gmail.com");
+
+    if (cuentaCorreo.validarCorreo(correoDestinatario)) {     
+      cuentaCorreo.enviarCorreo(correoDestinatario, "Cifrado de Mensaje: " + operacion + "; " + algoritmo, contenido);        
+      JOptionPane.showMessageDialog(this, "Correo enviado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    } else {
+      JOptionPane.showMessageDialog(this, "La dirección de correo electrónico no es válida.", "Error", JOptionPane.ERROR_MESSAGE);   
+    }      
+  }
+
+  private boolean validarCorreo(String correo) {
+    return correo.trim().matches("^.+@(gmail|hotmail|outlook)\\..+$");
+  }
+    
   /**
    * This method is called from within the constructor to initialize the form.
    * WARNING: Do NOT modify this code. The content of this method is always
@@ -158,6 +185,8 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
     Jbtn_Limpiar = new javax.swing.JButton();
     Jl_Clave = new javax.swing.JLabel();
     Jtf_Clave = new javax.swing.JTextField();
+    jLabel1 = new javax.swing.JLabel();
+    Jtf_CorreoDestinatario = new javax.swing.JTextField();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setBackground(new java.awt.Color(255, 255, 255));
@@ -199,36 +228,44 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
     Jl_Clave.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
     Jl_Clave.setText("Clave:");
 
+    jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+    jLabel1.setText("Correo Destinatario:");
+
+    Jtf_CorreoDestinatario.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        Jtf_CorreoDestinatarioActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout Jp_OpcionesLayout = new javax.swing.GroupLayout(Jp_Opciones);
     Jp_Opciones.setLayout(Jp_OpcionesLayout);
     Jp_OpcionesLayout.setHorizontalGroup(
       Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Jp_OpcionesLayout.createSequentialGroup()
-        .addContainerGap(30, Short.MAX_VALUE)
+      .addGroup(Jp_OpcionesLayout.createSequentialGroup()
+        .addGap(242, 242, 242)
+        .addComponent(Jbtn_AplicarAlgoritmo)
+        .addGap(32, 32, 32)
+        .addComponent(Jbtn_Limpiar)
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+      .addGroup(Jp_OpcionesLayout.createSequentialGroup()
+        .addGap(12, 12, 12)
         .addGroup(Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(Jp_OpcionesLayout.createSequentialGroup()
             .addGroup(Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-              .addComponent(Jbtn_EnviarCorreo)
-              .addGroup(Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(Jl_Salida, javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Jta_Salida, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE)))
+              .addGroup(Jp_OpcionesLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Jtf_CorreoDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Jbtn_EnviarCorreo)
+                .addGap(0, 0, Short.MAX_VALUE))
+              .addGroup(Jp_OpcionesLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                  .addComponent(Jta_Salida, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(Jl_Salida))))
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Jp_OpcionesLayout.createSequentialGroup()
-            .addGroup(Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-              .addGroup(javax.swing.GroupLayout.Alignment.LEADING, Jp_OpcionesLayout.createSequentialGroup()
-                .addComponent(Jl_Entrada)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Jbtn_AbrirTXT))
-              .addComponent(Jta_Entrada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(30, 30, 30))))
-      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Jp_OpcionesLayout.createSequentialGroup()
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addComponent(Jbtn_Salir)
-        .addGap(340, 340, 340))
-      .addGroup(Jp_OpcionesLayout.createSequentialGroup()
-        .addGroup(Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(Jp_OpcionesLayout.createSequentialGroup()
-            .addGap(12, 12, 12)
             .addComponent(Jl_OperacionRealizar)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(Jcb_Operacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -239,13 +276,22 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
             .addGap(18, 18, 18)
             .addComponent(Jl_Clave)
             .addGap(18, 18, 18)
-            .addComponent(Jtf_Clave, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-          .addGroup(Jp_OpcionesLayout.createSequentialGroup()
-            .addGap(242, 242, 242)
-            .addComponent(Jbtn_AplicarAlgoritmo)
-            .addGap(32, 32, 32)
-            .addComponent(Jbtn_Limpiar)))
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(Jtf_Clave, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 0, Short.MAX_VALUE))))
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Jp_OpcionesLayout.createSequentialGroup()
+        .addContainerGap(30, Short.MAX_VALUE)
+        .addGroup(Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Jp_OpcionesLayout.createSequentialGroup()
+            .addGroup(Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+              .addGroup(javax.swing.GroupLayout.Alignment.LEADING, Jp_OpcionesLayout.createSequentialGroup()
+                .addComponent(Jl_Entrada)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Jbtn_AbrirTXT))
+              .addComponent(Jta_Entrada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(30, 30, 30))
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Jp_OpcionesLayout.createSequentialGroup()
+            .addComponent(Jbtn_Salir)
+            .addContainerGap())))
     );
     Jp_OpcionesLayout.setVerticalGroup(
       Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,11 +318,14 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
         .addComponent(Jl_Salida)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(Jta_Salida, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(19, 19, 19)
-        .addComponent(Jbtn_EnviarCorreo)
-        .addGap(18, 18, 18)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+        .addGroup(Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(jLabel1)
+          .addComponent(Jtf_CorreoDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(Jbtn_EnviarCorreo))
+        .addGap(11, 11, 11)
         .addComponent(Jbtn_Salir)
-        .addContainerGap(26, Short.MAX_VALUE))
+        .addContainerGap())
     );
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -287,13 +336,15 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(layout.createSequentialGroup()
-        .addComponent(Jp_Opciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(0, 0, Short.MAX_VALUE))
+      .addComponent(Jp_Opciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
+
+  private void Jtf_CorreoDestinatarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jtf_CorreoDestinatarioActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_Jtf_CorreoDestinatarioActionPerformed
 
   /**
    * @param args the command line arguments
@@ -347,5 +398,7 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
   private java.awt.TextArea Jta_Entrada;
   private java.awt.TextArea Jta_Salida;
   private javax.swing.JTextField Jtf_Clave;
+  private javax.swing.JTextField Jtf_CorreoDestinatario;
+  private javax.swing.JLabel jLabel1;
   // End of variables declaration//GEN-END:variables
 }

@@ -33,6 +33,9 @@ public class Controlador_GUI_MENU_PRINCIPAL implements ActionListener {
     if (evento.getActionCommand().equals("Limpiar pantallas")) {
       gui_menu_principal.limpiarPantallas();
     }        
+    if (evento.getActionCommand().equals("Enviar por correo")) {
+      gui_menu_principal.enviarCorreo();
+    }     
     if (evento.getActionCommand().equals("Salir")) {
       System.exit(0);   
     }

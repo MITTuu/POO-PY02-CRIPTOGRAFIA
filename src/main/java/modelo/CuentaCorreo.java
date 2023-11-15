@@ -4,7 +4,9 @@
  */
 package modelo;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Properties;
@@ -143,6 +145,7 @@ public class CuentaCorreo {
    * @param destinatario La dirección de correo electrónico a validar.
    * @return `true` si la dirección es válida, `false` si no lo es.
    */
+
   public boolean validarCorreo(String destinatario) {
     try {
       URL url = new URL("https://api.emailable.com/v1/verify?email=" + destinatario + "&api_key=live_39906946df55214d1985");
@@ -150,10 +153,39 @@ public class CuentaCorreo {
       connection.setRequestMethod("GET");
 
       int responseCode = connection.getResponseCode();
-      return responseCode == 200; // 200 indica una respuesta exitosa
+
+      if (responseCode == 200) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        StringBuilder response = new StringBuilder();
+        String line;
+
+        while ((line = reader.readLine()) != null) {
+          response.append(line);
+        }
+
+        reader.close();
+
+        // Analiza la respuesta JSON para determinar si la dirección de correo es válida
+        return esCorreoValido(response.toString());
+        } else {
+        // El código de respuesta no es 200, algo salió mal
+        return false;
+        }
     } catch (IOException e) {
       e.printStackTrace();
-      return false; // Manejo básico de errores
+      return false;
     }
-  }   
-}
+  }
+
+  /**
+   * Verifica si la dirección de correo electrónico es válida según la respuesta JSON de la API de trumail.io.
+   *
+   * @param jsonResponse La respuesta JSON de la API de trumail.io.
+   * @return `true` si la dirección de correo es válida, `false` si no lo es o si ocurre algún error.
+   */  
+  private boolean esCorreoValido(String jsonResponse) {
+    return jsonResponse.contains("\"state\":\"deliverable\"");
+  }
+}  
+  
+
