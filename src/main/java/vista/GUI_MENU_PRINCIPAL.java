@@ -91,6 +91,7 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
         
         Jta_Salida.setText(contenido);
       } 
+
       case "Sustitución Vigenére" -> {    
         if (!validarClaveSustitucionVigenere(clave)) {
           // Mostrar mensaje de error para la clave
@@ -107,6 +108,28 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
         }        
         Jta_Salida.setText(contenido);
       } 
+  
+      case "Palabra Inversa" -> {    
+        PalabraInversa palabraInversa = new PalabraInversa();
+        
+        if ("Cifrado".equals(operacion)) {
+          contenido = palabraInversa.cifrar(contenido);
+        } else {
+          contenido = palabraInversa.descifrar(contenido);
+        }        
+        Jta_Salida.setText(contenido);
+      } 
+
+      case "Mensaje Inverso" -> {    
+        MensajeInverso mensajeInverso = new MensajeInverso();
+        
+        if ("Cifrado".equals(operacion)) {
+          contenido = mensajeInverso.cifrar(contenido);
+        } else {
+          contenido = mensajeInverso.descifrar(contenido);
+        }        
+        Jta_Salida.setText(contenido);
+      }       
       
     }
   }
@@ -201,7 +224,7 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
     Jl_Algoritmo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
     Jl_Algoritmo.setText("Algoritmo:");
 
-    Jcb_Algoritmo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cifrado César", "Cifrado por Llave", "Sustitución Vigenére" }));
+    Jcb_Algoritmo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cifrado César", "Cifrado por Llave", "Sustitución Vigenére", "Palabra Inversa", "Mensaje Inverso" }));
 
     Jl_Entrada.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
     Jl_Entrada.setText("Entrada");
@@ -255,8 +278,8 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
               .addGroup(Jp_OpcionesLayout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Jtf_CorreoDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(Jtf_CorreoDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Jbtn_EnviarCorreo)
                 .addGap(0, 0, Short.MAX_VALUE))
               .addGroup(Jp_OpcionesLayout.createSequentialGroup()
