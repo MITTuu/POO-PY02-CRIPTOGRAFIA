@@ -13,7 +13,7 @@ import vista.*;
 /**
  *
  * @author Dylan Montiel Zúñiga
- * @version 1.0 
+ * @version 3.0 
  */
 public class Controlador_GUI_MENU_PRINCIPAL implements ActionListener {
 
@@ -29,9 +29,14 @@ public class Controlador_GUI_MENU_PRINCIPAL implements ActionListener {
     }
     if (evento.getActionCommand().equals("Aplicar algoritmo")) {
       gui_menu_principal.aplicarAlgoritmo();
-    }
+    }   
+    if (evento.getActionCommand().equals("Limpiar pantallas")) {
+      gui_menu_principal.limpiarPantallas();
+    }        
     if (evento.getActionCommand().equals("Salir")) {
       System.exit(0);   
     }
+    gui_menu_principal.habilitarClave();
   }
+  
 }

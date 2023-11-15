@@ -10,6 +10,7 @@ package modelo;
  * @version 1.0
  */
 public abstract class CifradoClasico {
+  private String clave;
   public abstract String cifrar(String msj);
   public abstract String descifrar(String msj);
 }

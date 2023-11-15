@@ -27,60 +27,74 @@ public class SustitucionVigenere extends CifradoClasico {
   @Override
   public String cifrar(String msj) {
     StringBuilder msjCifrado = new StringBuilder();
-    int indiceClave = 0;
+    String[] lineas = msj.split("\n");
     
-    for (char caracter : msj.toCharArray()) {
-      if (Character.isLetter(caracter)) {
-        
-        // Calcular el valor del cáracter cifrado
-        int valorOriginal = caracter - 'a' + 1;
-        int valorDesplazamiento = clave.charAt(indiceClave) - 'a' + 1;
-        
-        // Calcular el valor cifrado utilizando el desplazamiento
-        int valorCifrado = (valorOriginal + valorDesplazamiento - 1) % 26 + 1;
-        
-        // Convertir el valor cifrado a letra
-        char caracterCifrado = (char) (valorCifrado + 'a' - 1);
-        
-        // Agregar el carácter cifrado al mensaje cifrado
-        msjCifrado.append(caracterCifrado);
-        
-        // ¨Pasar al siguiente carácter
-        indiceClave = (indiceClave + 1) % clave.length();        
-      } else {
-        msjCifrado.append(caracter);
+    for (String linea : lineas) {
+      String[] palabras = linea.split("\\s+"); // Dividir el texto en palabras
+
+      for (String palabra : palabras) {
+        for (int i = 0; i < palabra.length(); i++) {
+          char caracter = palabra.charAt(i);
+
+          if (Character.isLetter(caracter)) {
+            int valorOriginal = Character.toLowerCase(caracter) - 'a' + 1;
+            int valorClave = Integer.parseInt(clave.substring(i % 2, i % 2 + 1));
+
+            int valorCifrado = (valorOriginal + valorClave - 1) % 26 + 1;
+
+            // Ajustar en caso de que el resultado sea menor que 1
+            if (valorCifrado < 1) {
+              valorCifrado += 26;
+            }            
+
+            char caracterCifrado = (char) (valorCifrado + 'a' - 1);
+
+            msjCifrado.append(caracterCifrado);
+          } else {
+            msjCifrado.append(caracter);
+          }
+        }
+        msjCifrado.append(" "); // Agregar espacio entre palabras
       }
+      msjCifrado.append("\n");
     }
-    return msjCifrado.toString();
+    return msjCifrado.toString().trim();
   }
 
   @Override
   public String descifrar(String msj) {
     StringBuilder msjDescifrado = new StringBuilder();
-    int indiceClave = 0;
+    String[] lineas = msj.split("\n");
     
-    for (char caracter : msj.toCharArray()) {
-      if (Character.isLetter(caracter)) {
-        
-        // Calcular el valor del cáracter descifrado
-        int valorCifrado = caracter - 'a' + 1;
-        int valorDesplazamiento = clave.charAt(indiceClave) - 'a' + 1;
-        
-        // Calcular el valor descifrado utilizando el desplazamiento
-        int valorDescifrado = (valorCifrado + valorDesplazamiento - 1) % 26 + 1;
-        
-        // Convertir el valor descifrado a letra
-        char caracterDescifrado = (char) (valorDescifrado + 'a' - 1);
-        
-        // Agregar el carácter descifrado al mensaje cifrado
-        msjDescifrado.append(caracterDescifrado);
-        
-        // ¨Pasar al siguiente carácter de la clave
-        indiceClave = (indiceClave + 1) % clave.length();        
-      } else {
-        msjDescifrado.append(caracter);
+    for (String linea : lineas) {
+      String[] palabras = linea.split("\\s+"); // Dividir el texto en palabras
+
+      for (String palabra : palabras) {
+        for (int i = 0; i < palabra.length(); i++) {
+          char caracter = palabra.charAt(i);
+
+          if (Character.isLetter(caracter)) {
+            int valorCifrado = Character.toLowerCase(caracter) - 'a' + 1;
+            int valorClave = Integer.parseInt(clave.substring(i % 2, i % 2 + 1));
+
+            int valorDescifrado = (valorCifrado - valorClave + 26) % 26;
+
+            // Ajustar en caso de que el resultado sea menor que 1
+            if (valorDescifrado < 1) {
+              valorDescifrado += 26;
+            }            
+
+            char caracterDescifrado = (char) (valorDescifrado + 'a' - 1);
+
+            msjDescifrado.append(caracterDescifrado);
+          } else {
+            msjDescifrado.append(caracter);
+          }
+        }
+        msjDescifrado.append(" "); // Agregar espacio entre palabras
       }
+      msjDescifrado.append("\n");
     }
-    return msjDescifrado.toString();
+    return msjDescifrado.toString().trim();
   }
 }
