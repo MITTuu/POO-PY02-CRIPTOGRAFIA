@@ -61,5 +61,23 @@ public class Pruebas {
     // Descifrar el mensaje
     String msjDescifrado2 = sustitucionVigenere.descifrar(msjCifrado2);
     System.out.println("Mensaje Descifrado: " + msjDescifrado2);    
-  }
+    
+    // Enviar un correo con la verificacion de la API
+    CuentaCorreo cuentaCorreo = new CuentaCorreo("py02.cifradodemensajes@gmail.com");
+
+    String destinatario = "dylanmmz01apsdfsfobrpebojbidylanmmz01@gmail.com";
+    if (cuentaCorreo.validarCorreo(destinatario)) {
+      System.out.println("si");
+      cuentaCorreo.enviarCorreo(destinatario, "Asunto", "Cuerpo del correo");        
+    } else {
+      System.out.println("La dirección de correo electrónico no es válida.");
+    }  
+    
+    String destinatario1 = "dylanmmz01@gmail.com";
+    if (cuentaCorreo.validarCorreo(destinatario1)) {
+        cuentaCorreo.enviarCorreo(destinatario1, "Cifrado Cesar", msjCifrado);
+    } else {
+        System.out.println("La dirección de correo electrónico no es válida.");
+    }      
+  }  
 }
