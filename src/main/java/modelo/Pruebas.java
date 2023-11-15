@@ -70,7 +70,7 @@ public class Pruebas {
       System.out.println("si");
       cuentaCorreo.enviarCorreo(destinatario, "Asunto", "Cuerpo del correo");        
     } else {
-      System.out.println("La dirección de correo electrónico no es válida.");
+      System.out.println("La dirección de correo electrónico no es válida.");    
     }  
     
     String destinatario1 = "dylanmmz01@gmail.com";
