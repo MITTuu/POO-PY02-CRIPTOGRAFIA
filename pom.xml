@@ -12,11 +12,15 @@
         <exec.mainClass>com.mycompany.cifradomensajes.CifradoMensajes</exec.mainClass>
     </properties>
     <dependencies>
-        <!-- Dependencia de JavaMail API -->
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version> 
-        </dependency>                 
+        </dependency>      
+        <dependency>
+            <groupId>com.jtattoo</groupId>
+            <artifactId>JTattoo</artifactId>
+            <version>1.6.7</version>
+        </dependency>                        
     </dependencies>    
 </project>

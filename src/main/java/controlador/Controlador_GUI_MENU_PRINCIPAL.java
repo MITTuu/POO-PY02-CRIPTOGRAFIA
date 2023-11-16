@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import vista.*;
 
 /**
@@ -37,7 +38,10 @@ public class Controlador_GUI_MENU_PRINCIPAL implements ActionListener {
       gui_menu_principal.enviarCorreo();
     }     
     if (evento.getActionCommand().equals("Salir")) {
-      System.exit(0);   
+        int opcion = JOptionPane.showOptionDialog(null, "¿Deseas salir del programa?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+        if (opcion == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }       
     }
     gui_menu_principal.habilitarClave();
   }

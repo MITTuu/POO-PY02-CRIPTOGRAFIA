@@ -8,8 +8,11 @@ import controlador.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileFilter;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import com.jtattoo.plaf.hifi.HiFiLookAndFeel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import modelo.*;
 
@@ -25,8 +28,8 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
    */
   private Controlador_GUI_MENU_PRINCIPAL controlador_GUI_MENU_PRINCIPAL;
   
-  public GUI_MENU_PRINCIPAL() {
-    initComponents();
+  public GUI_MENU_PRINCIPAL() {      
+    initComponents();   
     setLocationRelativeTo(null);
     controlador_GUI_MENU_PRINCIPAL = new Controlador_GUI_MENU_PRINCIPAL(this);
     Jbtn_Salir.addActionListener(controlador_GUI_MENU_PRINCIPAL);
@@ -39,7 +42,7 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
     
     Jta_Entrada.setText("abcdefghijklmnopqrstuvwxy");
   }
-
+  /**
   public void abrirTXT() {
     JFileChooser fileChooser = new JFileChooser();
     FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de texto", "txt");
@@ -53,6 +56,32 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
       Jta_Entrada.setText(contenido);
     }
   }
+  */
+  
+  public void abrirTXT() {
+    JFileChooser fileChooser = new JFileChooser() {
+      public void addChoosableFileFilter(FileFilter filter) {
+        // Evita agregar filtros adicionales
+      }
+
+      public void setFileFilter(FileFilter filter) {
+        // Ignora cualquier filtro que se intente establecer
+      }
+    };
+
+    FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de texto", "txt");
+    fileChooser.setAcceptAllFileFilterUsed(false); // Desactiva el filtro "Todos los archivos"
+    fileChooser.addChoosableFileFilter(filter);
+    fileChooser.setFileFilter(filter);
+
+    int resultado = fileChooser.showOpenDialog(this);
+
+    if (resultado == JFileChooser.APPROVE_OPTION) {
+      File archivoSeleccionado = fileChooser.getSelectedFile();
+      String contenido = ManejoArchivos.leerArchivo(archivoSeleccionado.getAbsolutePath());
+      Jta_Entrada.setText(contenido);
+    }
+  }  
   
   public void aplicarAlgoritmo() {
     if (Jta_Entrada.getText().isEmpty()) {
@@ -205,15 +234,9 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    Jp_Opciones = new javax.swing.JPanel();
-    Jl_OperacionRealizar = new javax.swing.JLabel();
-    Jcb_Operacion = new javax.swing.JComboBox<>();
-    Jl_Algoritmo = new javax.swing.JLabel();
-    Jcb_Algoritmo = new javax.swing.JComboBox<>();
-    Jl_Entrada = new javax.swing.JLabel();
-    Jta_Entrada = new java.awt.TextArea();
-    Jbtn_AbrirTXT = new javax.swing.JButton();
-    Jbtn_AplicarAlgoritmo = new javax.swing.JButton();
+    jToolBar1 = new javax.swing.JToolBar();
+    jDialog1 = new javax.swing.JDialog();
+    scrollPane1 = new java.awt.ScrollPane();
     Jl_Salida = new javax.swing.JLabel();
     Jbtn_Salir = new javax.swing.JButton();
     Jbtn_EnviarCorreo = new javax.swing.JButton();
@@ -223,11 +246,55 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
     Jtf_Clave = new javax.swing.JTextField();
     jLabel1 = new javax.swing.JLabel();
     Jtf_CorreoDestinatario = new javax.swing.JTextField();
+    Jl_OperacionRealizar = new javax.swing.JLabel();
+    Jcb_Operacion = new javax.swing.JComboBox<>();
+    Jl_Algoritmo = new javax.swing.JLabel();
+    Jcb_Algoritmo = new javax.swing.JComboBox<>();
+    Jl_Entrada = new javax.swing.JLabel();
+    Jta_Entrada = new java.awt.TextArea();
+    Jbtn_AbrirTXT = new javax.swing.JButton();
+    Jbtn_AplicarAlgoritmo = new javax.swing.JButton();
+
+    jToolBar1.setRollover(true);
+
+    javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+    jDialog1.getContentPane().setLayout(jDialog1Layout);
+    jDialog1Layout.setHorizontalGroup(
+      jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGap(0, 400, Short.MAX_VALUE)
+    );
+    jDialog1Layout.setVerticalGroup(
+      jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGap(0, 300, Short.MAX_VALUE)
+    );
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setBackground(new java.awt.Color(255, 255, 255));
 
-    Jp_Opciones.setBackground(new java.awt.Color(255, 255, 255));
+    Jl_Salida.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+    Jl_Salida.setText("Salida");
+
+    Jbtn_Salir.setText("Salir");
+
+    Jbtn_EnviarCorreo.setText("Enviar por correo");
+
+    Jta_Salida.setBackground(new java.awt.Color(255, 255, 255));
+    Jta_Salida.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+    Jta_Salida.setEditable(false);
+
+    Jbtn_Limpiar.setText("Limpiar pantallas");
+
+    Jl_Clave.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+    Jl_Clave.setText("Clave:");
+
+    jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+    jLabel1.setText("Correo Destinatario:");
+
+    Jtf_CorreoDestinatario.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        Jtf_CorreoDestinatarioActionPerformed(evt);
+      }
+    });
 
     Jl_OperacionRealizar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
     Jl_OperacionRealizar.setText("Operación a realizar:");
@@ -249,130 +316,83 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
     Jbtn_AplicarAlgoritmo.setText("Aplicar algorítmo");
     Jbtn_AplicarAlgoritmo.setActionCommand("Aplicar algoritmo");
 
-    Jl_Salida.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-    Jl_Salida.setText("Salida");
-
-    Jbtn_Salir.setText("Salir");
-
-    Jbtn_EnviarCorreo.setText("Enviar por correo");
-
-    Jta_Salida.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-    Jta_Salida.setEditable(false);
-
-    Jbtn_Limpiar.setText("Limpiar pantallas");
-
-    Jl_Clave.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-    Jl_Clave.setText("Clave:");
-
-    jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-    jLabel1.setText("Correo Destinatario:");
-
-    Jtf_CorreoDestinatario.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        Jtf_CorreoDestinatarioActionPerformed(evt);
-      }
-    });
-
-    javax.swing.GroupLayout Jp_OpcionesLayout = new javax.swing.GroupLayout(Jp_Opciones);
-    Jp_Opciones.setLayout(Jp_OpcionesLayout);
-    Jp_OpcionesLayout.setHorizontalGroup(
-      Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(Jp_OpcionesLayout.createSequentialGroup()
-        .addGap(242, 242, 242)
-        .addComponent(Jbtn_AplicarAlgoritmo)
-        .addGap(32, 32, 32)
-        .addComponent(Jbtn_Limpiar)
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-      .addGroup(Jp_OpcionesLayout.createSequentialGroup()
-        .addGap(12, 12, 12)
-        .addGroup(Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(Jp_OpcionesLayout.createSequentialGroup()
-            .addGroup(Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-              .addGroup(Jp_OpcionesLayout.createSequentialGroup()
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(
+      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(layout.createSequentialGroup()
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(layout.createSequentialGroup()
+            .addGap(30, 30, 30)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+              .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Jtf_CorreoDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Jbtn_EnviarCorreo)
-                .addGap(0, 0, Short.MAX_VALUE))
-              .addGroup(Jp_OpcionesLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addComponent(Jta_Salida, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addComponent(Jl_Salida))))
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-          .addGroup(Jp_OpcionesLayout.createSequentialGroup()
-            .addComponent(Jl_OperacionRealizar)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(Jcb_Operacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(154, 154, 154)
+                .addComponent(Jbtn_Salir))
+              .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(Jta_Salida, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Jl_Salida)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                  .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addComponent(Jl_Entrada)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Jbtn_AbrirTXT))
+                  .addComponent(Jta_Entrada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createSequentialGroup()
+                  .addComponent(Jl_OperacionRealizar)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(Jcb_Operacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGap(41, 41, 41)
+                  .addComponent(Jl_Algoritmo)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(Jcb_Algoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGap(45, 45, 45)
+                  .addComponent(Jl_Clave)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(Jtf_Clave, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+          .addGroup(layout.createSequentialGroup()
+            .addGap(247, 247, 247)
+            .addComponent(Jbtn_AplicarAlgoritmo)
             .addGap(18, 18, 18)
-            .addComponent(Jl_Algoritmo)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(Jcb_Algoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18)
-            .addComponent(Jl_Clave)
-            .addGap(18, 18, 18)
-            .addComponent(Jtf_Clave, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(0, 0, Short.MAX_VALUE))))
-      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Jp_OpcionesLayout.createSequentialGroup()
-        .addContainerGap(30, Short.MAX_VALUE)
-        .addGroup(Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Jp_OpcionesLayout.createSequentialGroup()
-            .addGroup(Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-              .addGroup(javax.swing.GroupLayout.Alignment.LEADING, Jp_OpcionesLayout.createSequentialGroup()
-                .addComponent(Jl_Entrada)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Jbtn_AbrirTXT))
-              .addComponent(Jta_Entrada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(30, 30, 30))
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Jp_OpcionesLayout.createSequentialGroup()
-            .addComponent(Jbtn_Salir)
-            .addContainerGap())))
+            .addComponent(Jbtn_Limpiar)))
+        .addContainerGap(30, Short.MAX_VALUE))
     );
-    Jp_OpcionesLayout.setVerticalGroup(
-      Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(Jp_OpcionesLayout.createSequentialGroup()
-        .addGap(20, 20, 20)
-        .addGroup(Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+    layout.setVerticalGroup(
+      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(layout.createSequentialGroup()
+        .addGap(30, 30, 30)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(Jl_OperacionRealizar)
           .addComponent(Jcb_Operacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(Jl_Algoritmo)
           .addComponent(Jcb_Algoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(Jl_Clave)
           .addComponent(Jtf_Clave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(25, 25, 25)
-        .addGroup(Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+        .addGap(34, 34, 34)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
           .addComponent(Jl_Entrada)
           .addComponent(Jbtn_AbrirTXT))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addGap(12, 12, 12)
         .addComponent(Jta_Entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(22, 22, 22)
-        .addGroup(Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(Jbtn_AplicarAlgoritmo)
           .addComponent(Jbtn_Limpiar))
-        .addGap(18, 18, 18)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(Jl_Salida)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(Jta_Salida, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-        .addGroup(Jp_OpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel1)
           .addComponent(Jtf_CorreoDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(Jbtn_EnviarCorreo))
-        .addGap(11, 11, 11)
-        .addComponent(Jbtn_Salir)
-        .addContainerGap())
-    );
-
-    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-    getContentPane().setLayout(layout);
-    layout.setHorizontalGroup(
-      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(Jp_Opciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-    );
-    layout.setVerticalGroup(
-      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(Jp_Opciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(Jbtn_EnviarCorreo)
+          .addComponent(Jbtn_Salir))
+        .addGap(26, 26, 26))
     );
 
     pack();
@@ -408,7 +428,13 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
       java.util.logging.Logger.getLogger(GUI_MENU_PRINCIPAL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
     //</editor-fold>
-
+ 
+    try {
+      UIManager.setLookAndFeel(new HiFiLookAndFeel());
+    } catch (Exception e) {
+      e.printStackTrace();  
+    }
+    
     /* Create and display the form */
     java.awt.EventQueue.invokeLater(new Runnable() {
       public void run() {
@@ -430,11 +456,13 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
   private javax.swing.JLabel Jl_Entrada;
   private javax.swing.JLabel Jl_OperacionRealizar;
   private javax.swing.JLabel Jl_Salida;
-  private javax.swing.JPanel Jp_Opciones;
   private java.awt.TextArea Jta_Entrada;
   private java.awt.TextArea Jta_Salida;
   private javax.swing.JTextField Jtf_Clave;
   private javax.swing.JTextField Jtf_CorreoDestinatario;
+  private javax.swing.JDialog jDialog1;
   private javax.swing.JLabel jLabel1;
+  private javax.swing.JToolBar jToolBar1;
+  private java.awt.ScrollPane scrollPane1;
   // End of variables declaration//GEN-END:variables
 }
