@@ -278,7 +278,7 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
 
     Jbtn_EnviarCorreo.setText("Enviar por correo");
 
-    Jta_Salida.setBackground(new java.awt.Color(255, 255, 255));
+    Jta_Salida.setBackground(new java.awt.Color(102, 102, 102));
     Jta_Salida.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
     Jta_Salida.setEditable(false);
 
@@ -309,6 +309,7 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
     Jl_Entrada.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
     Jl_Entrada.setText("Entrada");
 
+    Jta_Entrada.setBackground(new java.awt.Color(102, 102, 102));
     Jta_Entrada.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
     Jbtn_AbrirTXT.setText("Abrir archivo TXT");
