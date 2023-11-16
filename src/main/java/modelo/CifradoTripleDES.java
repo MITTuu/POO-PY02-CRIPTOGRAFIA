@@ -25,12 +25,14 @@ import java.security.spec.KeySpec;
  */
 public class CifradoTripleDES {
 
-
   private String contrasena = "contrasena123456789012345678";// No muevan esta madre o se jode todo.
   private Cipher encriptador;
   private Cipher desencriptador;
   private SecretKey llave;
-    
+  
+  /*
+  
+  */
   public CifradoTripleDES() {
     setContrasena();
   }
@@ -68,15 +70,15 @@ public class CifradoTripleDES {
 
         // Codificar bytes a base64 para obtener cadena
         codificado = BASE64EncoderStream.encode(codificado);
-        String resultado = new String(codificado); 
-                
+        
+        String resultado = new String(codificado);
 
-        return resultado;//new String(codificado);
+        return resultado;
       }
     } catch (Exception e) {
       e.printStackTrace();
     }
-        
+       
     return null;
     
   }
@@ -86,13 +88,15 @@ public class CifradoTripleDES {
 
     try {
       if (pCadena != null) {
-        
-        byte[] decodificar = BASE64DecoderStream.decode(pCadena.getBytes());
+        // Decodificar base64 para obtener bytes
+        byte[] desincriptado = BASE64DecoderStream.decode(pCadena.getBytes());
 
-        byte[] formato = desencriptador.doFinal(decodificar);
+        // Descifrar
+        byte[] formato = desencriptador.doFinal(desincriptado);
         String resultado = new String(formato, "UTF8");
- 
-        return resultado;//new String(formato, "UTF8");
+
+        // Crear nueva cadena basada en utf-8
+        return resultado;
       }
     } catch (Exception e) {
       e.printStackTrace();
