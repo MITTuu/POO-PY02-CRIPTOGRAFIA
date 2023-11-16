@@ -12,7 +12,7 @@ package modelo;
 public class Pruebas {
   public static void main(String[] args) {
     
-    /*
+    
     // Instanciar el objeto cifradoCesar
     CifradoCesar cifradoCesar = new CifradoCesar();
     System.out.println("Cifrado Cesar");
