@@ -6,12 +6,13 @@ package modelo;
 
 /**
  *
- * @author dylan
+ * @author Dylan Montiel Zúñiga
+ * @version 1.0
  */
 public class MensajeInverso extends CifradoClasico {
 
   public MensajeInverso() {
-    super("");
+    super(null);
   }
 
   @Override

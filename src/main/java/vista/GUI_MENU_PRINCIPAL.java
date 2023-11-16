@@ -36,6 +36,8 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
     Jtf_Clave.setEnabled(false);
     Jcb_Algoritmo.addActionListener(controlador_GUI_MENU_PRINCIPAL);
     Jbtn_EnviarCorreo.addActionListener(controlador_GUI_MENU_PRINCIPAL);
+    
+    Jta_Entrada.setText("abcdefghijklmnopqrstuvwxy");
   }
 
   public void abrirTXT() {
@@ -127,6 +129,17 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
           contenido = mensajeInverso.cifrar(contenido);
         } else {
           contenido = mensajeInverso.descifrar(contenido);
+        }        
+        Jta_Salida.setText(contenido);
+      }       
+
+      case "Cifrado por código telefónico" -> {    
+        CifradoTelefonico cifradoTelefonico = new CifradoTelefonico();
+        
+        if ("Cifrado".equals(operacion)) {
+          contenido = cifradoTelefonico.cifrar(contenido);
+        } else {
+          contenido = cifradoTelefonico.descifrar(contenido);
         }        
         Jta_Salida.setText(contenido);
       }       
@@ -224,7 +237,7 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
     Jl_Algoritmo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
     Jl_Algoritmo.setText("Algoritmo:");
 
-    Jcb_Algoritmo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cifrado César", "Cifrado por Llave", "Sustitución Vigenére", "Palabra Inversa", "Mensaje Inverso" }));
+    Jcb_Algoritmo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cifrado César", "Cifrado por Llave", "Sustitución Vigenére", "Palabra Inversa", "Mensaje Inverso", "Cifrado por código telefónico" }));
 
     Jl_Entrada.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
     Jl_Entrada.setText("Entrada");

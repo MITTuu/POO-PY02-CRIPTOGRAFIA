@@ -11,7 +11,7 @@ package modelo;
 public class PalabraInversa extends CifradoClasico {
 
   public PalabraInversa() {
-    super("");
+    super(null);
   }
 
   @Override
