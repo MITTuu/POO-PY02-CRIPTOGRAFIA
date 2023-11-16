@@ -18,7 +18,7 @@ public class Pruebas {
     System.out.println("Cifrado Cesar");
     
     // Mensaje original
-    String msjOriginal = "Tarea programada criptografia de datos.";
+    String msjOriginal = "Tarea programada criptografía de datos xyz.";
     System.out.println("Mensaje Original: " + msjOriginal);
     // Cifrar el mensaje
     String msjCifrado = cifradoCesar.cifrar(msjOriginal);
@@ -35,7 +35,7 @@ public class Pruebas {
     System.out.println("Cifrado por llave");
     
     // Mensaje original
-    String msjOriginal1 = "tarea programada de codificacion";
+    String msjOriginal1 = "tarea programada de codificacion xyz xyz";
     System.out.println("Mensaje Original: " + msjOriginal1);
     
     // Cifrar el mensaje
@@ -45,29 +45,41 @@ public class Pruebas {
     // Descifrar el mensaje
     String msjDescifrado1 = cifradoPorLlave.descifrar(msjCifrado1);
     System.out.println("Mensaje Descifrado: " + msjDescifrado1);    
-    */
-    CifradoDES_V2 cifrar = new CifradoDES_V2();
+  
+    System.out.println("\n");
     
-    CifradoAES cifra = new CifradoAES();
+    // Instanciar el objeto cifradoPorLlave
+    SustitucionVigenere sustitucionVigenere = new SustitucionVigenere("32");
+    System.out.println("Cifrado Vigenere");
     
-    CifradoTripleDES ni = new CifradoTripleDES();
+    // Mensaje original
+    String msjOriginal2 = "tarea programada de codificacion xyz";
+    System.out.println("Mensaje Original: " + msjOriginal2);
     
-    //String nada = "lt/1jm7Bn2Lbz2pNqmFNvoS1HtNFezZrDyVsEVGeqn0=";
+    // Cifrar el mensaje
+    String msjCifrado2 = sustitucionVigenere.cifrar(msjOriginal2);
+    System.out.println("Mensaje Cifrado: " + msjCifrado2);
     
-    String nada = "Este mensaje sera cifrado.";
+    // Descifrar el mensaje
+    String msjDescifrado2 = sustitucionVigenere.descifrar(msjCifrado2);
+    System.out.println("Mensaje Descifrado: " + msjDescifrado2);    
     
-    String na1 = cifra.cifrado(nada);
-    //ni.setContrasena();
-    System.out.println(na1);
+    // Enviar un correo con la verificacion de la API
+    CuentaCorreo cuentaCorreo = new CuentaCorreo("py02.cifradodemensajes@gmail.com");
+
+    String destinatario = "dylanmmz01apsdfsfobrpebojbidylanmmz01@gmail.com";
+    if (cuentaCorreo.validarCorreo(destinatario)) {
+      System.out.println("si");
+      cuentaCorreo.enviarCorreo(destinatario, "Asunto", "Cuerpo del correo");        
+    } else {
+      System.out.println("La dirección de correo electrónico no es válida.");    
+    }  
     
-    CifradoDES_V2 cifrar1 = new CifradoDES_V2();
-    CifradoAES cifra1 = new CifradoAES();
-    CifradoTripleDES ni1 = new CifradoTripleDES();
-    
-    String na2 = cifra1.descifrado(na1);
-    System.out.println(na2);
-    
-    
-    
-  }
+    String destinatario1 = "dylanmmz01@gmail.com";
+    if (cuentaCorreo.validarCorreo(destinatario1)) {
+        cuentaCorreo.enviarCorreo(destinatario1, "Cifrado Cesar", msjCifrado);
+    } else {
+        System.out.println("La dirección de correo electrónico no es válida.");
+    }      
+  }  
 }

@@ -7,10 +7,14 @@ package modelo;
 /**
  *
  * @author Dylan Montiel Zúñiga
- * @version 1.0
+ * @version 2.0
  */
 public class CifradoCesar extends CifradoClasico {
-  private static final int desplazamiento = 3;
+  private static final int DESPLAZAMIENTO = 3;
+  
+  public CifradoCesar() {
+    super(Integer.toString(DESPLAZAMIENTO));
+  }
   
   @Override
   public String cifrar(String msj) {
@@ -19,7 +23,7 @@ public class CifradoCesar extends CifradoClasico {
     for (char caracter : msj.toCharArray()) {
       if (Character.isLetter(caracter)) {
         char base = Character.isUpperCase(caracter) ? 'A' : 'a';
-        char cifrado = (char) ((caracter - base + desplazamiento) % 26 + base);
+        char cifrado = (char) ((caracter - base + DESPLAZAMIENTO) % 26 + base);
         msjCifrado.append(cifrado);
       } else {
         msjCifrado.append(caracter);
@@ -35,7 +39,7 @@ public class CifradoCesar extends CifradoClasico {
     for (char caracter : msj.toCharArray()) {
       if (Character.isLetter(caracter)) {
         char base = Character.isUpperCase(caracter) ? 'A' : 'a';
-        char descifrado = (char) ((caracter - base - desplazamiento) % 26 + base);
+        char descifrado = (char) ((caracter - base - DESPLAZAMIENTO + 26) % 26 + base);
         msjDescifrado.append(descifrado);
       } else {
         msjDescifrado.append(caracter);

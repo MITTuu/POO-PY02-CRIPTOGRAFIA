@@ -10,6 +10,20 @@ package modelo;
  * @version 1.0
  */
 public abstract class CifradoClasico {
+  private String clave;
+  
+  public CifradoClasico(String pClave) {
+    setClave(pClave);
+  }
+
+  // Métodos accesores
+  public String getClave() {
+    return clave;
+  }
+  public void setClave(String pClave) {
+    this.clave = pClave;
+  }    
+  
   public abstract String cifrar(String msj);
   public abstract String descifrar(String msj);
 }
