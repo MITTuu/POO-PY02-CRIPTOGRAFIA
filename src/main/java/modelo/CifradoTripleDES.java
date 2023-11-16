@@ -30,9 +30,7 @@ public class CifradoTripleDES {
   private Cipher desencriptador;
   private SecretKey llave;
   
-  /*
-  
-  */
+
   public CifradoTripleDES() {
     setContrasena();
   }

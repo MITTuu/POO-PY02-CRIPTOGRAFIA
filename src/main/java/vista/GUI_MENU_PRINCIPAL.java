@@ -27,6 +27,10 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
    */
   private Controlador_GUI_MENU_PRINCIPAL controlador_GUI_MENU_PRINCIPAL;
   
+  private CifradoRSA cifradoRSA;
+  
+  private static int countRSA= 0;
+  
   public GUI_MENU_PRINCIPAL() {      
     initComponents();   
     setLocationRelativeTo(null);
@@ -155,7 +159,58 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
           contenido = cifradoTelefonico.descifrar(contenido);
         }        
         Jta_Salida.setText(contenido);
-      }       
+      } 
+
+      case "Cifrado por Codificacion Binaria" -> {    
+        CifradoBinario cifradoBinario = new CifradoBinario();
+        
+        if ("Cifrado".equals(operacion)) {
+          contenido = cifradoBinario.cifrado(contenido);
+        } else {
+          contenido = cifradoBinario.descifrado(contenido);
+        }        
+        Jta_Salida.setText(contenido);
+      } 
+
+      case "CifradoRSA" -> {    
+        CifradoRSA cifradoRSA = new CifradoRSA();
+        
+        if ("Cifrado".equals(operacion)) {
+          contenido = cifradoRSA.cifrado(contenido);
+        } else {
+          contenido = cifradoRSA.descifrado(contenido);
+        }        
+        Jta_Salida.setText(contenido);
+      }  
+      
+      case "Cifrado Triple DES" -> {    
+        CifradoTripleDES cifradoTripleDES = new CifradoTripleDES();
+        
+        if ("Cifrado".equals(operacion)) {
+          contenido = cifradoTripleDES.cifrado(contenido);
+        } else {
+          contenido = cifradoTripleDES.descifrado(contenido);
+        }        
+        Jta_Salida.setText(contenido);
+      }  
+
+      case "Cifrado AES" -> {    
+        CifradoAES cifradoTelefonico = new CifradoAES();
+        
+        if ("Cifrado".equals(operacion)) {
+          contenido = cifradoTelefonico.cifrado(contenido);
+        } else {
+          contenido = cifradoTelefonico.descifrado(contenido);
+        }        
+        Jta_Salida.setText(contenido);
+      }  
+
+
+
+
+
+
+
       
     }
   }
@@ -304,7 +359,7 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
     Jl_Algoritmo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
     Jl_Algoritmo.setText("Algoritmo:");
 
-    Jcb_Algoritmo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cifrado César", "Cifrado por Llave", "Sustitución Vigenére", "Palabra Inversa", "Mensaje Inverso", "Cifrado por código telefónico" }));
+    Jcb_Algoritmo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cifrado César", "Cifrado por Llave", "Sustitución Vigenére", "Palabra Inversa", "Mensaje Inverso", "Cifrado por código telefónico", "Cifrado por Codificacion Binaria", "Cifrado RSA", "Cifrado Triple DES", "Cifrado AES" }));
 
     Jl_Entrada.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
     Jl_Entrada.setText("Entrada");
@@ -323,46 +378,42 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
       .addGroup(layout.createSequentialGroup()
         .addGap(30, 30, 30)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(layout.createSequentialGroup()
-            .addComponent(Jl_Salida)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-          .addGroup(layout.createSequentialGroup()
+          .addComponent(Jl_Salida)
+          .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+              .addComponent(jLabel1)
+              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+              .addComponent(Jtf_CorreoDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+              .addComponent(Jbtn_EnviarCorreo)
+              .addGap(154, 154, 154)
+              .addComponent(Jbtn_Salir))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addGroup(layout.createSequentialGroup()
-                  .addComponent(jLabel1)
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                  .addComponent(Jtf_CorreoDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                  .addComponent(Jbtn_EnviarCorreo)
-                  .addGap(154, 154, 154)
-                  .addComponent(Jbtn_Salir))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addComponent(Jta_Salida, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                      .addComponent(Jl_Entrada)
-                      .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                      .addComponent(Jbtn_AbrirTXT))
-                    .addComponent(Jta_Entrada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE))
-                  .addGroup(layout.createSequentialGroup()
-                    .addComponent(Jl_OperacionRealizar)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(Jcb_Operacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(41, 41, 41)
-                    .addComponent(Jl_Algoritmo)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(Jcb_Algoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(45, 45, 45)
-                    .addComponent(Jl_Clave)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(Jtf_Clave, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+              .addComponent(Jta_Salida, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                  .addComponent(Jl_Entrada)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                  .addComponent(Jbtn_AbrirTXT))
+                .addComponent(Jta_Entrada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE))
               .addGroup(layout.createSequentialGroup()
-                .addGap(217, 217, 217)
-                .addComponent(Jbtn_AplicarAlgoritmo)
-                .addGap(18, 18, 18)
-                .addComponent(Jbtn_Limpiar)))
-            .addContainerGap(30, Short.MAX_VALUE))))
+                .addComponent(Jl_OperacionRealizar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Jcb_Operacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(Jl_Algoritmo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Jcb_Algoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(Jl_Clave)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Jtf_Clave, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+          .addGroup(layout.createSequentialGroup()
+            .addGap(217, 217, 217)
+            .addComponent(Jbtn_AplicarAlgoritmo)
+            .addGap(18, 18, 18)
+            .addComponent(Jbtn_Limpiar)))
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
       .addComponent(jSeparator1)
       .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
     );
