@@ -5,16 +5,24 @@ import java.util.*;
 //Import generales del proyecto
 
 /**
- *
+ * Esta clase una abstraccion de un metodo de cifrado por codificacion binaria.
  * @author Eduardo Rojas Gomez y Dylan Montiel Zuñiga.
  * 
  * @version 15/11/2023
  */
 public class CifradoBinario {
-  
+  /**
+   * Este es el constructor de la clase CifradoRSA.
+   */  
   public CifradoBinario() {
   }
-  
+ 
+  /**
+   * Este metodo permite encriptar una cadena de Strings mediante el algoritmo RSA.
+   * 
+   * @param pCadena una cadena de caracteres la cual sera cifrada.
+   * @return Una cadena descifrado mediante el algoritmo RSA.
+   */    
   public String cifrado(String pCadena) {
     pCadena = pCadena.toLowerCase();
     StringBuilder msjCifrado = new StringBuilder();
@@ -41,7 +49,13 @@ public class CifradoBinario {
     }
     return msjCifrado.toString();
   }
-  
+
+  /**
+   * Este metodo permite descifrar una cadena de Strings mediante el algoritmo RSA.
+   * 
+   * @param pCadena una cadena de caracteres.
+   * @return Una cadena descifrado mediante el algoritmo RSA.
+   */  
   public String descifrado(String pCadena) {
     StringBuilder msjCifrado = new StringBuilder();
     
@@ -62,7 +76,13 @@ public class CifradoBinario {
     }
     return msjCifrado.toString();
   }  
-  
+
+  /**
+   * Este metodo permite obtener el valor binario de una letra del alfabeto.
+   * 
+   * @param pLetra 
+   * @return El valor binario correspondiente a la letra ingresada.
+   */
   public String letraABinario(String pLetra) {
     //System.out.println(pLetra);
     //String p = "e";
@@ -156,7 +176,14 @@ public class CifradoBinario {
     
     }
   }  
- 
+
+  
+  /**
+   * Este metodo permite obtener la letra correspondiente a un valor binario. 
+   * 
+   * @param pLetra
+   * @return La letra correspondiente a un valor binario.
+   */
   public String binarioALetra(String pLetra) {
     switch (pLetra) {
       case "00000":

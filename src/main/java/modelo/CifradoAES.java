@@ -10,7 +10,8 @@ import javax.crypto.spec.SecretKeySpec;
 
 //Import generales del proyecto
 /**
- *
+ * Esta clase una abstraccion de un metodo de cifrado AES. 
+ * 
  * @author Eduardo Rojas Gomez y Dylan Montiel Zuñiga.
  * 
  * @version 12/11/2023
@@ -20,11 +21,38 @@ public class CifradoAES extends CifradoModerno{
   private Cipher cifrador;// El cifrado AES solo ocupa un objeto para realizar ambas funciones.
   private SecretKey llave;  
   private String contrasena = "contrasena123456";// No muevan esta madre o se jode todo.
-  
+ 
+  /**
+   * Este metodo es el constructor de la clase CifradoAES.
+   */
   public CifradoAES() {
     super ("Cifrado AES");
   }
 
+  
+  /**
+   * Este metodo permite establecer una llave con la cual se realizara el cifrado
+   * y descifrado de datos.
+   */
+  private void setLlave() {
+    try {
+     // Utilizar la contraseña fija para generar la clave AES
+      byte[] tamano = contrasena.getBytes();
+      llave = new SecretKeySpec(tamano, "AES");
+      cifrador = Cipher.getInstance("AES");
+      
+    } catch (Exception e) {
+      
+      e.printStackTrace();
+    }
+  }  
+ 
+  /**
+   * Este metodo permite encriptar una cadena de Strings mediante el algoritmo AES.
+   * 
+   * @param pCadena una cadena de caracteres la cual sera cifrada.
+   * @return Una cadena cifrada mediante el algoritmo RSA.
+   */  
   public String cifrado(String pCadena) {
     setLlave();
     try {
@@ -45,6 +73,12 @@ public class CifradoAES extends CifradoModerno{
     return null;
   }
 
+  /**
+   * Este metodo permite descifrar una cadena de Strings mediante el algoritmo AES.
+   * 
+   * @param pCadena una cadena de caracteres.
+   * @return Una cadena descifrado mediante el algoritmo RSA.
+   */
   public String descifrado(String pCadena) {
     setLlave();
     try {
@@ -64,18 +98,5 @@ public class CifradoAES extends CifradoModerno{
     return null;
   }
 
-  private void setLlave() {
-    try {
-     // Utilizar la contraseña fija para generar la clave AES
-      byte[] tamano = contrasena.getBytes();
-      llave = new SecretKeySpec(tamano, "AES");
-      cifrador = Cipher.getInstance("AES");
-      
-    } catch (Exception e) {
-      
-      e.printStackTrace();
-    }
-  }  
-  
-  
+
 }

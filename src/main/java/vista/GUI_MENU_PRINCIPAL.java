@@ -173,7 +173,10 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
       } 
 
       case "CifradoRSA" -> {    
-        CifradoRSA cifradoRSA = new CifradoRSA();
+        
+        if (countRSA == 0) {
+          cifradoRSA = new CifradoRSA();
+        }
         
         if ("Cifrado".equals(operacion)) {
           contenido = cifradoRSA.cifrado(contenido);

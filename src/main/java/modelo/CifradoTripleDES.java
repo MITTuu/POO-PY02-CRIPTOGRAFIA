@@ -18,7 +18,8 @@ import com.sun.mail.util.BASE64EncoderStream;
 import java.security.spec.KeySpec;
 //Import generales del proyecto
 /**
- *
+ *  Esta clase una abstraccion de un metodo de cifrado DES.
+ * 
  * @author Eduardo Rojas Gomez y Dylan Montiel Zuñiga.
  * 
  * @version 12/11/2023
@@ -30,11 +31,18 @@ public class CifradoTripleDES {
   private Cipher desencriptador;
   private SecretKey llave;
   
-
+  /**
+   * Este es el constructor de la clase CifradoRSA.
+   */
   public CifradoTripleDES() {
     setContrasena();
   }
-  
+
+
+  /**
+   * Este metodo permite establecer una llave con la cual se realizara el cifrado
+   * y descifrado de datos.
+   */    
   public void setContrasena(){
     try {
       //System.out.println(contrasena.getBytes());
@@ -56,7 +64,14 @@ public class CifradoTripleDES {
     }  
     
   }  
-  
+
+
+  /**
+   * Este metodo permite encriptar una cadena de Strings mediante el algoritmo Triple DES.
+   * 
+   * @param pCadena una cadena de caracteres la cual sera cifrada.
+   * @return Una cadena cifrado mediante el algoritmo RSA.
+   */  
   public String cifrado(String pCadena){
     try {
       if (pCadena != null) {
@@ -81,7 +96,12 @@ public class CifradoTripleDES {
     
   }
   
-  
+  /**
+   * Este metodo permite descifrar una cadena de Strings mediante el algoritmo AES.
+   * 
+   * @param pCadena una cadena de caracteres.
+   * @return Una cadena descifrado mediante el algoritmo Triple DES.
+   */  
   public String descifrado(String pCadena){
 
     try {

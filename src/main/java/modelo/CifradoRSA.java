@@ -8,7 +8,8 @@ import java.io.*;
 //Import generales del proyecto
 
 /**
- *
+ *  Esta clase una abstraccion de un metodo de cifrado RSA.
+ * 
  * @author Eduardo Rojas Gomez y Dylan Montiel Zuñiga.
  * 
  * @version 12/11/2023
@@ -21,12 +22,18 @@ public class CifradoRSA {
   
   private String contrasena = "contrasena";
   
-  
+  /**
+   * Este es el constructor de la clase CifradoRSA.
+   */  
   public CifradoRSA() {
     setLlaves();
     //guardarLlaves();
   }
-  
+ 
+  /**
+   * Este metodo permite establecer una llave con la cual se realizara el cifrado
+   * y descifrado de datos.
+   */  
   public void setLlaves() {
     
     try {
@@ -42,7 +49,14 @@ public class CifradoRSA {
     }
     
   }
+ 
   
+  /**
+   * Este metodo permite encriptar una cadena de Strings mediante el algoritmo RSA.
+   * 
+   * @param pCadena una cadena de caracteres la cual sera cifrada.
+   * @return Una cadena cifrada mediante el algoritmo RSA.
+   */    
   public String cifrado(String pCadena) {
   
     try {
@@ -56,7 +70,14 @@ public class CifradoRSA {
     }
     return null;
   }
-  
+
+
+  /**
+   * Este metodo permite descifrar una cadena de Strings mediante el algoritmo RSA.
+   * 
+   * @param pCadena una cadena de caracteres.
+   * @return Una cadena cifrado mediante el algoritmo RSA.
+   */
   public String descifrado(String pCadena) {
     try {
       //setLlaves();
@@ -74,7 +95,9 @@ public class CifradoRSA {
   
   }
   
-  
+  /**
+   * 
+   */  
   public void guardarLlaves() {
   
     try {
