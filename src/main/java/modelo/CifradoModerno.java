@@ -87,4 +87,18 @@ public abstract class CifradoModerno {
    */
   public abstract String descifrado(String pCadena); 
   
+  
+  /**
+   * Este metodo retorna los datos actuales de esta instancia.
+   * 
+   * @return Los datos de esta clase.
+   */
+  public String toString() {
+    String msg = "";
+    
+    msg = "Tipo de cifrado" + getTipoCifrado() + "\n";
+    msg += "Total de cifrados creados" + getContadorCifrados() + "\n";
+    return msg;
+  }
+  
 }
