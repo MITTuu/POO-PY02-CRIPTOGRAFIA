@@ -2,13 +2,6 @@ package modelo;
 
 //Imports especificos de funcionalidad
 
-import java.util.Base64;
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
-
-
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
@@ -24,7 +17,7 @@ import java.security.spec.KeySpec;
  * 
  * @version 12/11/2023
  */
-public class CifradoTripleDES {
+public class CifradoTripleDES extends CifradoModerno{
 
   private String contrasena = "contrasena123456789012345678";// No muevan esta madre o se jode todo.
   private Cipher encriptador;
@@ -35,6 +28,7 @@ public class CifradoTripleDES {
    * Este es el constructor de la clase CifradoRSA.
    */
   public CifradoTripleDES() {
+    super("Cifrado Triple DES");
     setContrasena();
   }
 

@@ -14,7 +14,7 @@ import java.io.*;
  * 
  * @version 12/11/2023
  */
-public class CifradoRSA {
+public class CifradoRSA extends CifradoModerno{
   //private PrivateKey clavePrivada;
   //private PublicKey clavePublica;  
   private PrivateKey privateKey;
@@ -26,6 +26,7 @@ public class CifradoRSA {
    * Este es el constructor de la clase CifradoRSA.
    */  
   public CifradoRSA() {
+    super("Cifrado RSA");
     setLlaves();
     //guardarLlaves();
   }
