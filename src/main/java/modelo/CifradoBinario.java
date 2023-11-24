@@ -68,8 +68,11 @@ public class CifradoBinario {
 
         //System.out.println(letra+"--1");
         //System.out.println(binarioALetra(letra)+"--2");
+        if (binarioALetra(letra) == null) {
+          return null;
+        }
         msjCifrado.append(binarioALetra(letra));
-
+        
       }
 
     }
@@ -262,9 +265,10 @@ public class CifradoBinario {
 
       case "11001":
         return "z";
-
+      
+        
       default:
-        return " ";
+        return null;
     }
   }  
     

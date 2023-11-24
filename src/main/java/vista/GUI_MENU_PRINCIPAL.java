@@ -166,9 +166,11 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
         
         if ("Cifrado".equals(operacion)) {
           contenido = cifradoBinario.cifrado(contenido);
+          
           if (contenido == null){
             System.out.println("Error");
-          }          
+          }
+          
         } else {
           contenido = cifradoBinario.descifrado(contenido);
           if (contenido == null){
