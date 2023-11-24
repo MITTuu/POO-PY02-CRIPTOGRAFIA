@@ -30,22 +30,21 @@ public class CifradoBinario {
       if (letra != ' ') {
       //System.out.println(letra);
         if (Character.isLetter(letra)) {
-          //if (letra != 'ñ') {
-         
-          msjCifrado.append(" " + letraABinario(String.valueOf(letra)));
-            
+          if (letra != 'ñ' || letra != 'Ñ') {
+              msjCifrado.append(" " + letraABinario(String.valueOf(letra)));
+          }  else {
+            return null;
+          }
+        } else {
+          return null;
         }
         // msjCifrado.append(letra);
         
       }  else {
           
-       msjCifrado.append(" *");
+        msjCifrado.append(" *");
       }
-               
-     // } else {
-        //return null;        
-    // }
-    
+
     }
     return msjCifrado.toString();
   }
