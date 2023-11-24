@@ -166,8 +166,14 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
         
         if ("Cifrado".equals(operacion)) {
           contenido = cifradoBinario.cifrado(contenido);
+          if (contenido == null){
+            System.out.println("Error");
+          }          
         } else {
           contenido = cifradoBinario.descifrado(contenido);
+          if (contenido == null){
+            System.out.println("Error");
+          }          
         }        
         Jta_Salida.setText(contenido);
       } 
@@ -180,8 +186,14 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
         
         if ("Cifrado".equals(operacion)) {
           contenido = cifradoRSA.cifrado(contenido);
+          if (contenido == null){
+            System.out.println("Error");
+          }          
         } else {
           contenido = cifradoRSA.descifrado(contenido);
+          if (contenido == null){
+            System.out.println("Error");
+          }          
         }        
         Jta_Salida.setText(contenido);
       }  
@@ -191,8 +203,14 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
         
         if ("Cifrado".equals(operacion)) {
           contenido = cifradoTripleDES.cifrado(contenido);
+          if (contenido == null){
+            System.out.println("Error");
+          }          
         } else {
           contenido = cifradoTripleDES.descifrado(contenido);
+          if (contenido == null){
+            System.out.println("Error");
+          }          
         }        
         Jta_Salida.setText(contenido);
       }  
@@ -202,8 +220,14 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
         
         if ("Cifrado".equals(operacion)) {
           contenido = cifradoTelefonico.cifrado(contenido);
+          if (contenido == null){
+            System.out.println("Error");
+          }          
         } else {
           contenido = cifradoTelefonico.descifrado(contenido);
+          if (contenido == null){
+            System.out.println("Error");
+          }
         }        
         Jta_Salida.setText(contenido);
       }  
