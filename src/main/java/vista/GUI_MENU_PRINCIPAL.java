@@ -180,10 +180,11 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
         Jta_Salida.setText(contenido);
       } 
 
-      case "CifradoRSA" -> {    
+      case "Cifrado RSA" -> {    
         
         if (countRSA == 0) {
           cifradoRSA = new CifradoRSA();
+          countRSA++;
         }
         
         if ("Cifrado".equals(operacion)) {
