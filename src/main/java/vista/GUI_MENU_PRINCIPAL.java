@@ -73,7 +73,7 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
   
   public void aplicarAlgoritmo() {
     if (Jta_Entrada.getText().isEmpty()) {
-      JOptionPane.showMessageDialog(this, "Debes abrir un archivo para aplicar algún algorítmo", "Error", JOptionPane.ERROR_MESSAGE);                
+      JOptionPane.showMessageDialog(this, "Debes escribir un texto o abrir un archivo para aplicar algún algorítmo.", "Error", JOptionPane.ERROR_MESSAGE);                
       return;
     }
     
@@ -169,12 +169,16 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
           
           if (contenido == null){
             System.out.println("Error");
+            JOptionPane.showMessageDialog(this, "A ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
+            return;         
           }
           
         } else {
           contenido = cifradoBinario.descifrado(contenido);
           if (contenido == null){
             System.out.println("Error");
+            JOptionPane.showMessageDialog(this, "A ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
+            return;         
           }          
         }        
         Jta_Salida.setText(contenido);
@@ -191,11 +195,15 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
           contenido = cifradoRSA.cifrado(contenido);
           if (contenido == null){
             System.out.println("Error");
+            JOptionPane.showMessageDialog(this, "A ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
+            return;          
           }          
         } else {
           contenido = cifradoRSA.descifrado(contenido);
           if (contenido == null){
             System.out.println("Error");
+            JOptionPane.showMessageDialog(this, "A ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
+            return;          
           }          
         }        
         Jta_Salida.setText(contenido);
@@ -208,28 +216,37 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
           contenido = cifradoTripleDES.cifrado(contenido);
           if (contenido == null){
             System.out.println("Error");
+            JOptionPane.showMessageDialog(this, "A ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
+            return;          
           }          
         } else {
           contenido = cifradoTripleDES.descifrado(contenido);
           if (contenido == null){
             System.out.println("Error");
+            JOptionPane.showMessageDialog(this, "A ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
+            return;          
           }          
         }        
         Jta_Salida.setText(contenido);
       }  
 
-      case "Cifrado AES" -> {    
+      case "Cifrado AES" -> {   
+        
         CifradoAES cifradoTelefonico = new CifradoAES();
         
         if ("Cifrado".equals(operacion)) {
           contenido = cifradoTelefonico.cifrado(contenido);
           if (contenido == null){
             System.out.println("Error");
+            JOptionPane.showMessageDialog(this, "A ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
+            return;
           }          
         } else {
           contenido = cifradoTelefonico.descifrado(contenido);
           if (contenido == null){
             System.out.println("Error");
+            JOptionPane.showMessageDialog(this, "A ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
+            return;            
           }
         }        
         Jta_Salida.setText(contenido);
