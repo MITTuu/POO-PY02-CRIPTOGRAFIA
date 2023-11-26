@@ -14,13 +14,21 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  * Clase que representa la interfaz gráfica del menú principal de la aplicación.
  * 
- * @author Eduardo Rojas Gomez, Dylan Montiel Zuniga
+ * @author Eduardo Rojas Gomez
+ * @author Dylan Montiel Zuniga
  * @version 5.0
  */
 public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
 
+  /**
+   * Instancia de la clase Controlador_GUI_MENU_PRINCIPAL
+   */    
   private Controlador_GUI_MENU_PRINCIPAL controlador_GUI_MENU_PRINCIPAL;  
+  /**
+   * Instancia de la clase CifradoRSA
+   */  
   private CifradoRSA cifradoRSA;
+  
   private static int countRSA= 0;
 
   /**
@@ -174,7 +182,7 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
         } else {
           contenido = cifradoBinario.descifrar(contenido);
           if (contenido == null){
-            JOptionPane.showMessageDialog(this, "A ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
             return;         
           }          
         }        
@@ -192,14 +200,14 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
           contenido = cifradoRSA.cifrar(contenido);
           if (contenido == null){
             System.out.println("Error");
-            JOptionPane.showMessageDialog(this, "A ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
             return;          
           }          
         } else {
           contenido = cifradoRSA.descifrar(contenido);
           if (contenido == null){
             System.out.println("Error");
-            JOptionPane.showMessageDialog(this, "A ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
             return;          
           }          
         }        
@@ -213,14 +221,14 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
           contenido = cifradoTripleDES.cifrado(contenido);
           if (contenido == null){
             System.out.println("Error");
-            JOptionPane.showMessageDialog(this, "A ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
             return;          
           }          
         } else {
           contenido = cifradoTripleDES.descifrado(contenido);
           if (contenido == null){
             System.out.println("Error");
-            JOptionPane.showMessageDialog(this, "A ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
             return;          
           }          
         }        
@@ -235,14 +243,14 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
           contenido = cifradoTelefonico.cifrado(contenido);
           if (contenido == null){
             System.out.println("Error");
-            JOptionPane.showMessageDialog(this, "A ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
             return;
           }          
         } else {
           contenido = cifradoTelefonico.descifrado(contenido);
           if (contenido == null){
             System.out.println("Error");
-            JOptionPane.showMessageDialog(this, "A ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
             return;            
           }
         }        
@@ -314,7 +322,7 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
         @Override
         protected Void doInBackground() throws Exception {
           // Operación de envío de correo
-          cuentaCorreo.enviarCorreo(correoDestinatario, "Cifrado de Mensaje: " + operacion + "; " + algoritmo, contenido);
+          cuentaCorreo.enviarCorreo(correoDestinatario, "Criptografía de Mensaje: " + operacion + "; " + algoritmo, contenido);
           return null;
         }
 
@@ -332,6 +340,7 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
 
   /**
    * Valida si la terminacion del correo
+   * @param correo Correo para enviar el email
    */  
   private boolean validarCorreo(String correo) {
     return correo.trim().matches("^.+@(gmail|hotmail|outlook)\\..+$");
@@ -436,7 +445,7 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addGap(30, 30, 30)
+        .addGap(23, 23, 23)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(Jl_Salida)
           .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -448,32 +457,34 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
               .addComponent(Jbtn_EnviarCorreo)
               .addGap(154, 154, 154)
               .addComponent(Jbtn_Salir))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(Jta_Salida, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                  .addComponent(Jl_Entrada)
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                  .addComponent(Jbtn_AbrirTXT))
-                .addComponent(Jta_Entrada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE))
-              .addGroup(layout.createSequentialGroup()
-                .addComponent(Jl_OperacionRealizar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Jcb_Operacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(Jl_Algoritmo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Jcb_Algoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(Jl_Clave)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Jtf_Clave, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGroup(layout.createSequentialGroup()
+              .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(Jta_Salida, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                  .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addComponent(Jl_Entrada)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Jbtn_AbrirTXT))
+                  .addComponent(Jta_Entrada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createSequentialGroup()
+                  .addComponent(Jl_OperacionRealizar)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(Jcb_Operacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGap(41, 41, 41)
+                  .addComponent(Jl_Algoritmo)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(Jcb_Algoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGap(30, 30, 30)
+                  .addComponent(Jl_Clave)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(Jtf_Clave, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+              .addGap(13, 13, 13)))
           .addGroup(layout.createSequentialGroup()
             .addGap(217, 217, 217)
             .addComponent(Jbtn_AplicarAlgoritmo)
             .addGap(18, 18, 18)
             .addComponent(Jbtn_Limpiar)))
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addContainerGap(10, Short.MAX_VALUE))
       .addComponent(jSeparator1)
       .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
     );
@@ -521,9 +532,11 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
   private void Jtf_CorreoDestinatarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jtf_CorreoDestinatarioActionPerformed
     // TODO add your handling code here:
   }//GEN-LAST:event_Jtf_CorreoDestinatarioActionPerformed
-
+ 
   /**
-   * @param args the command line arguments
+   * Este método inicia la aplicación GUI_MENU_PRINCIPAL.
+   *
+   * @param args[] the command line arguments
    */
   public static void main(String args[]) {
     /* Set the Nimbus look and feel */
@@ -562,7 +575,10 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
       }
     });
   }
-
+  
+  /**
+   * Objetos de la interfaz
+   */
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton Jbtn_AbrirTXT;
   private javax.swing.JButton Jbtn_AplicarAlgoritmo;

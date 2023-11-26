@@ -8,7 +8,8 @@ package modelo;
  * Clase que implementa un cifrado de sustitución Vigenère, donde cada letra
  * del mensaje se cifra o descifra utilizando una clave específica.
  *
- * @author Dylan Montiel Zúñiga
+ * @author Eduardo Rojas Gomez
+ * @author Dylan Montiel Zuniga
  * @version 1.0
  */
 public class SustitucionVigenere extends CifradoClasico {

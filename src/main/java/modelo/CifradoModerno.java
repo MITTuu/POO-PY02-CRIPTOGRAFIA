@@ -5,14 +5,20 @@ package modelo;
  * implementa metodos abstractos los cuales seran sera implementados por las 
  * clases hijas para cifrar datos.
  * 
- * @author Eduardo Rojas Gomez, Dylan Montiel Zuniga
+ * @author Eduardo Rojas Gomez
+ * @author Dylan Montiel Zuniga
  * @version 2.0
  */
 public abstract class CifradoModerno {
-  public String tipoCifrado;
   
+  /**
+   * Tipo de cifrado
+   */
+  public String tipoCifrado;  
+  /**
+   * Contador de cifrados
+   */  
   public static int contadorCifrados;
-  
   
   /**
    * Este es el contructor de la clase asbtracta CifradoModeno.
@@ -34,18 +40,16 @@ public abstract class CifradoModerno {
   public String getTipoCifrado() {
     return tipoCifrado;
   }
-
   
   /**
    * Este metodo permite establecer el tipo de cifrado que se realizara.
    * 
-   * @param pTipoCifrado: El tipo de cifrado.
+   * @param pTipoCifrado El tipo de cifrado.
    */
   public void setTipoCifrado(String pTipoCifrado) {
     this.tipoCifrado = pTipoCifrado;
   }
 
-  
   /**
    * Este metodo permite obtener la cantidad de instacias de cifrado moderno creadas.
    * 
@@ -70,7 +74,7 @@ public abstract class CifradoModerno {
    * una forma de cifrar los datos. 
    * 
    * @param pCadena: Una cadena String la cual sera cifrada.
-   * @return 
+   * @return El mensaje cifrado
    */
   public abstract String cifrado(String pCadena);
  
@@ -78,11 +82,10 @@ public abstract class CifradoModerno {
    * Este metodo abstracto sera permite que las clases hijas implementen
    * una forma de descifrar los datos. 
    * @param pCadena: Una cadena String la cual sera descifrada.
-   * @return 
+   * @return El mensaje descifrado
    */
   public abstract String descifrado(String pCadena); 
-  
-  
+   
   /**
    * Este metodo retorna los datos actuales de esta instancia.
    * 
@@ -94,6 +97,5 @@ public abstract class CifradoModerno {
     msg = "Tipo de cifrado" + getTipoCifrado() + "\n";
     msg += "Total de cifrados creados" + getContadorCifrados() + "\n";
     return msg;
-  }
-  
+  }  
 }

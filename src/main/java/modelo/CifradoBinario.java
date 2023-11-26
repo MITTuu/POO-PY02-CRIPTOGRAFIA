@@ -5,7 +5,8 @@ import java.util.*;
 /**
  * Esta clase una abstraccion de un metodo de cifrado por codificacion binaria.
  * 
- * @author Eduardo Rojas Gomez, Dylan Montiel Zuniga
+ * @author Eduardo Rojas Gomez
+ * @author Dylan Montiel Zuniga
  * @version 1.0
  */
 public class CifradoBinario extends CifradoClasico {
@@ -84,7 +85,7 @@ public class CifradoBinario extends CifradoClasico {
   /**
    * Este metodo permite obtener el valor binario de una letra del alfabeto.
    * 
-   * @param pLetra 
+   * @param pLetra Letra para hacer el cambio a binario
    * @return El valor binario correspondiente a la letra ingresada.
    */
   public String letraABinario(String pLetra) {
@@ -184,7 +185,7 @@ public class CifradoBinario extends CifradoClasico {
   /**
    * Este metodo permite obtener la letra correspondiente a un valor binario. 
    * 
-   * @param pLetra
+   * @param pLetra Combinacion binaria para cambiar a su letra correspondiente
    * @return La letra correspondiente a un valor binario.
    */
   public String binarioALetra(String pLetra) {

@@ -5,7 +5,8 @@ package modelo;
  * en la que cada letra en el texto sin formato se desplaza un número fijo de
  * posiciones hacia la derecha en el alfabeto.
  *
- * @author Eduardo Rojas Gomez, Dylan Montiel Zuniga
+ * @author Eduardo Rojas Gomez
+ * @author Dylan Montiel Zuniga
  * @version 2.0
  */
 public class CifradoCesar extends CifradoClasico {

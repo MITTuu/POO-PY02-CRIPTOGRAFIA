@@ -1,7 +1,5 @@
 package modelo;
 
-//Imports especificos de funcionalidad
-
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
@@ -9,11 +7,12 @@ import javax.crypto.spec.DESedeKeySpec;
 import com.sun.mail.util.BASE64DecoderStream;
 import com.sun.mail.util.BASE64EncoderStream;
 import java.security.spec.KeySpec;
-//Import generales del proyecto
+
 /**
  *  Esta clase una abstraccion de un metodo de cifrado DES.
  * 
- * @author Eduardo Rojas Gomez, Dylan Montiel Zuniga 
+ * @author Eduardo Rojas Gomez
+ * @author Dylan Montiel Zuniga 
  * @version 4.0
  */
 public class CifradoTripleDES extends CifradoModerno{
@@ -54,10 +53,8 @@ public class CifradoTripleDES extends CifradoModerno{
       
     } catch (Exception e) {
       e.printStackTrace();
-    }  
-    
+    }     
   }  
-
 
   /**
    * Este metodo permite encriptar una cadena de Strings mediante el algoritmo Triple DES.
@@ -83,10 +80,8 @@ public class CifradoTripleDES extends CifradoModerno{
       }
     } catch (Exception e) {
       e.printStackTrace();
-    }
-       
-    return null;
-    
+    }       
+    return null;    
   }
   
   /**

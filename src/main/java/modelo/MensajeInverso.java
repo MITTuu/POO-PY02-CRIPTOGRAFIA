@@ -4,7 +4,8 @@ package modelo;
  * Clase que implementa un cifrado de mensaje inverso, donde cada caracter
  * del mensaje se invierte en orden.
  *
- * @author Eduardo Rojas Gomez, Dylan Montiel Zuniga
+ * @author Eduardo Rojas Gomez
+ * @author Dylan Montiel Zuniga
  * @version 1.0
  */
 public class MensajeInverso extends CifradoClasico {

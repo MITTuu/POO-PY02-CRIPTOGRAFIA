@@ -9,7 +9,8 @@ import javax.crypto.spec.SecretKeySpec;
 /**
  * Esta clase una abstraccion de un metodo de cifrado AES. 
  * 
- * @author Eduardo Rojas Gomez, Dylan Montiel Zuniga
+ * @author Eduardo Rojas Gomez
+ * @author Dylan Montiel Zuniga
  * @version 2.0
  */
 public class CifradoAES extends CifradoModerno{

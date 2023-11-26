@@ -8,7 +8,8 @@ import vista.*;
 /**
  * Clase que actúa como controlador para la interfaz gráfica del menú principal.
  * 
- * @author Eduardo Rojas Gomez, Dylan Montiel Zuniga
+ * @author Eduardo Rojas Gomez
+ * @author Dylan Montiel Zuniga
  * @version 4.0
  */
 public class Controlador_GUI_MENU_PRINCIPAL implements ActionListener {

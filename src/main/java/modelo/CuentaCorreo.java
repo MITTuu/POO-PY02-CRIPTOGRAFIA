@@ -21,7 +21,8 @@ import javax.mail.MessagingException;
  * Esta clase representa una cuenta de correo electrónico y proporciona 
  * métodos para enviar correos electrónicos.
  * 
- * @author Eduardo Rojas Gomez, Dylan Montiel Zuniga
+ * @author Eduardo Rojas Gomez
+ * @author Dylan Montiel Zuniga
  * @version 1.0
  */
 public class CuentaCorreo {

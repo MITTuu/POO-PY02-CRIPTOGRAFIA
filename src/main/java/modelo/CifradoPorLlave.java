@@ -4,7 +4,8 @@ package modelo;
  * Clase que implementa un cifrado por llave, donde cada letra en el texto
  * sin formato se cifra o descifra utilizando una clave proporcionada.
  *
- * @author Eduardo Rojas Gomez, Dylan Montiel Zuniga
+ * @author Eduardo Rojas Gomez
+ * @author Dylan Montiel Zuniga
  * @version 3.0
  */
 public class CifradoPorLlave extends CifradoClasico {  

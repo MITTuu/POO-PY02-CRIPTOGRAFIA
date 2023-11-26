@@ -9,10 +9,20 @@ import java.io.IOException;
 /**
  * La clase ManejoArchivos proporciona métodos para leer y sobrescribir archivos.
  *
- * @author Eduardo Rojas Gomez, Dylan Montiel Zuniga
+ * @author Eduardo Rojas Gomez
+ * @author Dylan Montiel Zuniga
  * @version 1.0
  */
 public class ManejoArchivos {
+
+  /**
+   * Constructor predeterminado de la clase ManejoArchivos.
+   * Este constructor no realiza ninguna operación específica.
+   */
+  public ManejoArchivos() {
+    // Este constructor no realiza ninguna operación específica.
+  }
+  
   /**
    * Lee el contenido de un archivo y lo devuelve como un String.
    *

@@ -8,7 +8,8 @@ import java.io.*;
 /**
  *  Esta clase una abstraccion de un metodo de cifrado RSA.
  * 
- * @author Eduardo Rojas Gomez, Dylan Montiel Zuñiga. 
+ * @author Eduardo Rojas Gomez
+ * @author Dylan Montiel Zuniga
  * @version 3.0
  */
 public class CifradoRSA extends CifradoClasico {

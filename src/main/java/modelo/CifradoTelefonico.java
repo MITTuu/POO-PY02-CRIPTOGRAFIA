@@ -5,7 +5,8 @@ package modelo;
  * sin formato se representa por un par de números que indican el número y la posición
  * de la letra en un teclado telefónico.
  *
- * @author Eduardo Rojas Gomez, Dylan Montiel Zuniga
+ * @author Eduardo Rojas Gomez
+ * @author Dylan Montiel Zuniga
  * @version 1.0
  */
 public class CifradoTelefonico extends CifradoClasico {
