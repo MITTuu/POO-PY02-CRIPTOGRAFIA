@@ -159,7 +159,10 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
 
       case "Cifrado por código telefónico" -> {    
         CifradoTelefonico cifradoTelefonico = new CifradoTelefonico();
-        
+        if (contieneNumeros(contenido)) {        
+          JOptionPane.showMessageDialog(this, "Ha ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
+          return;                 
+        }
         if ("Cifrado".equals(operacion)) {
           contenido = cifradoTelefonico.cifrar(contenido);
         } else {
@@ -278,6 +281,16 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
   public boolean validarClaveSustitucionVigenere(String clave) {
     return !clave.trim().isEmpty() && clave.matches("\\d{2}") && clave.matches("\\d+");
   }  
+
+  /**
+   * Valida si el texto a codificar contiene numeros
+   * 
+   * @param texto texto a codificar.
+   * @return true o false
+   */  
+  private boolean contieneNumeros(String texto) {
+      return texto.matches(".*\\d.*");
+  }
   
   /**
    * Limpia las áreas de entrada y salida en la interfaz gráfica.
