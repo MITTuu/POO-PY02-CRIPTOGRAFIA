@@ -26,27 +26,34 @@ public class CifradoBinario extends CifradoClasico {
    */
   @Override
   public String cifrar(String pCadena) {
-    pCadena = pCadena.toLowerCase();
+    String[] lineas = pCadena.split("\n");
     StringBuilder msjCifrado = new StringBuilder();
-    for (char letra : pCadena.toCharArray()) {
-      if (letra != ' ') {
-      //System.out.println(letra);
+    
+    for (String linea : lineas) {
+      
+      linea = linea.toLowerCase();
+      //System.out.println(linea);
+    
+      for (char letra : linea.toCharArray()) {
+        //System.out.println(letra);
+
         if (Character.isLetter(letra)) {
           if (letra != 'ñ' || letra != 'Ñ') {
-              msjCifrado.append(" " + letraABinario(String.valueOf(letra)));
-          }  else {
+            msjCifrado.append(letraABinario(String.valueOf(letra))+ " ");
+          } else {
             return null;
           }
+          
+        } else if (letra == ' ') {
+          msjCifrado.append("* ");
+        } else if (letra == '\n' || letra == '\r') {
+          msjCifrado.append("\n");
         } else {
           return null;
         }
-        // msjCifrado.append(letra);
-        
-      }  else {
-          
-        msjCifrado.append(" *");
-      }
 
+      }      
+      //msjCifrado.append("\n");
     }
     return msjCifrado.toString();
   }
@@ -61,23 +68,30 @@ public class CifradoBinario extends CifradoClasico {
   public String descifrar(String pCadena) {
     StringBuilder msjCifrado = new StringBuilder();
     
-    String[] listaString = pCadena.split(" ");
+    String[] lineas = pCadena.split("\\n");
+    //System.out.println("Tamaño: " + lineas.length + " |  " + lineas[0] + " A " + lineas[1]);
+
+    for (String linea : lineas) {
+    String[] listaString = linea.split("\\s+");
     
     for (String letra : listaString) {
-
-      if (letra.equals("*") ) {
+      //System.out.println(letra+"--1");
+      if (letra.equals("*" ) || letra.matches("\\*+") ) {
         msjCifrado.append(" ");
       } else {
 
         //System.out.println(letra+"--1");
         //System.out.println(binarioALetra(letra)+"--2");
         if (binarioALetra(letra) == null) {
+          //System.out.println("Pass");
           return null;
         }
         msjCifrado.append(binarioALetra(letra));
         
       }
 
+    }
+    msjCifrado.append("\n");
     }
     return msjCifrado.toString();
   }  
