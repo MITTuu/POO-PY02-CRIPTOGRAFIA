@@ -60,7 +60,7 @@ public class CifradoTripleDES extends CifradoModerno{
    * Este metodo permite encriptar una cadena de Strings mediante el algoritmo Triple DES.
    * 
    * @param pCadena una cadena de caracteres la cual sera cifrada.
-   * @return Una cadena cifrado mediante el algoritmo RSA.
+   * @return Una cadena cifrado mediante el algoritmo triple DES.
    */  
   public String cifrado(String pCadena){
     try {
