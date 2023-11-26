@@ -5,6 +5,8 @@
 package modelo;
 
 /**
+ * Clase que implementa un cifrado de sustitución Vigenère, donde cada letra
+ * del mensaje se cifra o descifra utilizando una clave específica.
  *
  * @author Dylan Montiel Zúñiga
  * @version 1.0
@@ -12,11 +14,22 @@ package modelo;
 public class SustitucionVigenere extends CifradoClasico {
   private String clave;
 
+  /**
+   * Constructor que inicializa el cifrado de sustitución Vigenère con una clave dada.
+   *
+   * @param pClave La clave a utilizar para el cifrado.
+   */  
   public SustitucionVigenere(String pClave) {
     super(pClave); 
     clave = super.getClave();
   }
 
+  /**
+   * Cifra un mensaje utilizando el cifrado de sustitución Vigenère.
+   *
+   * @param msj El mensaje a cifrar.
+   * @return El mensaje cifrado.
+   */  
   @Override
   public String cifrar(String msj) {
     StringBuilder msjCifrado = new StringBuilder();
@@ -54,6 +67,13 @@ public class SustitucionVigenere extends CifradoClasico {
     return msjCifrado.toString().trim();
   }
 
+
+  /**
+   * Descifra un mensaje cifrado utilizando el cifrado de sustitución Vigenère.
+   *
+   * @param msj El mensaje cifrado a descifrar.
+   * @return El mensaje descifrado.
+   */  
   @Override
   public String descifrar(String msj) {
     StringBuilder msjDescifrado = new StringBuilder();

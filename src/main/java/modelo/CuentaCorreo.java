@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelo;
 
 import java.io.BufferedReader;
@@ -25,7 +21,7 @@ import javax.mail.MessagingException;
  * Esta clase representa una cuenta de correo electrónico y proporciona 
  * métodos para enviar correos electrónicos.
  * 
- * @author Dylan Montiel Zúñiga
+ * @author Eduardo Rojas Gomez, Dylan Montiel Zuniga
  * @version 1.0
  */
 public class CuentaCorreo {

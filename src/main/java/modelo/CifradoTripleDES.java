@@ -13,9 +13,8 @@ import java.security.spec.KeySpec;
 /**
  *  Esta clase una abstraccion de un metodo de cifrado DES.
  * 
- * @author Eduardo Rojas Gomez y Dylan Montiel Zuñiga.
- * 
- * @version 12/11/2023
+ * @author Eduardo Rojas Gomez, Dylan Montiel Zuniga 
+ * @version 4.0
  */
 public class CifradoTripleDES extends CifradoModerno{
 

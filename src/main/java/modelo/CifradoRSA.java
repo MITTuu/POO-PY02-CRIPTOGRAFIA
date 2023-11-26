@@ -1,20 +1,17 @@
 package modelo;
 
-//Imports especificos de funcionalidad
 import java.security.*;
 import javax.crypto.Cipher;
 import java.util.Base64;
 import java.io.*;
-//Import generales del proyecto
 
 /**
  *  Esta clase una abstraccion de un metodo de cifrado RSA.
  * 
- * @author Eduardo Rojas Gomez y Dylan Montiel Zuñiga.
- * 
- * @version 12/11/2023
+ * @author Eduardo Rojas Gomez, Dylan Montiel Zuñiga. 
+ * @version 3.0
  */
-public class CifradoRSA extends CifradoModerno{
+public class CifradoRSA extends CifradoClasico {
   //private PrivateKey clavePrivada;
   //private PublicKey clavePublica;  
   private PrivateKey privateKey;
@@ -35,22 +32,18 @@ public class CifradoRSA extends CifradoModerno{
    * Este metodo permite establecer una llave con la cual se realizara el cifrado
    * y descifrado de datos.
    */  
-  public void setLlaves() {
-    
+  public void setLlaves() {    
     try {
       //setLlaves();
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
         keyPairGenerator.initialize(2048);
         KeyPair keyPair = keyPairGenerator.generateKeyPair();
         this.privateKey = keyPair.getPrivate();
-        this.publicKey = keyPair.getPublic();      
-    
+        this.publicKey = keyPair.getPublic();          
     } catch (Exception e) {
       e.printStackTrace();
-    }
-    
-  }
- 
+    }    
+  } 
   
   /**
    * Este metodo permite encriptar una cadena de Strings mediante el algoritmo RSA.
@@ -58,20 +51,17 @@ public class CifradoRSA extends CifradoModerno{
    * @param pCadena una cadena de caracteres la cual sera cifrada.
    * @return Una cadena cifrada mediante el algoritmo RSA.
    */    
-  public String cifrado(String pCadena) {
-  
+  public String cifrar(String pCadena) {
     try {
       //setLlaves();
         Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
         cipher.init(Cipher.ENCRYPT_MODE, this.publicKey);
-        return Base64.getEncoder().encodeToString(cipher.doFinal(pCadena.getBytes()));
-      
+        return Base64.getEncoder().encodeToString(cipher.doFinal(pCadena.getBytes()));      
     } catch (Exception e) {
       e.printStackTrace();
     }
     return null;
   }
-
 
   /**
    * Este metodo permite descifrar una cadena de Strings mediante el algoritmo RSA.
@@ -79,7 +69,7 @@ public class CifradoRSA extends CifradoModerno{
    * @param pCadena una cadena de caracteres.
    * @return Una cadena cifrado mediante el algoritmo RSA.
    */
-  public String descifrado(String pCadena) {
+  public String descifrar(String pCadena) {
     try {
       //setLlaves();
         Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
@@ -89,18 +79,13 @@ public class CifradoRSA extends CifradoModerno{
     } catch (Exception e) {
       e.printStackTrace();
     }
-    return null;  
-  
-  
-  
-  
+    return null;      
   }
-  
+    
   /**
-   * 
+   * Guarda las claves en archivos para su posterior recuperación.
    */  
-  public void guardarLlaves() {
-  
+  public void guardarLlaves() {  
     try {
       // Comprobar si las claves ya existen
       File archivoPrivado = new File("private.key");
@@ -116,8 +101,7 @@ public class CifradoRSA extends CifradoModerno{
         this.publicKey = (PublicKey) publicKeyStream.readObject();
         publicKeyStream.close();
         
-      } else {
-        
+      } else {        
         // Generar nuevas claves
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
         SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
@@ -139,6 +123,5 @@ public class CifradoRSA extends CifradoModerno{
     } catch (Exception e) {
       e.printStackTrace();
     }  
-  }  
-  
+  }    
 }

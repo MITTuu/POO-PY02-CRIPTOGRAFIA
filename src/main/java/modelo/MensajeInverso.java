@@ -1,38 +1,51 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelo;
 
 /**
+ * Clase que implementa un cifrado de mensaje inverso, donde cada caracter
+ * del mensaje se invierte en orden.
  *
- * @author Dylan Montiel Zúñiga
+ * @author Eduardo Rojas Gomez, Dylan Montiel Zuniga
  * @version 1.0
  */
 public class MensajeInverso extends CifradoClasico {
 
+  /**
+   * Constructor que inicializa el cifrado de mensaje inverso sin utilizar una clave.
+   */  
   public MensajeInverso() {
     super(null);
   }
 
+  /**
+   * Cifra un mensaje invirtiendo completamente la frase.
+   *
+   * @param msj El mensaje a cifrar.
+   * @return El mensaje cifrado.
+   */  
   @Override
   public String cifrar(String msj) {
     return mensajeInverso(msj);
   }
 
+  /**
+   * Descifra un mensaje invirtiendo completamente la frase.
+   *
+   * @param msj El mensaje a descifrar.
+   * @return El mensaje descifrado.
+   */  
   @Override
   public String descifrar(String msj) {
     return mensajeInverso(msj);
   }
 
+
   /**
-   * Cifra el mensaje invirtiendo completamente la frase.
+   * Cifra o descifra un mensaje invirtiendo completamente la frase.
    *
-   * @param msj El mensaje a cifrar.
-   * @return El mensaje cifrado.
+   * @param msj El mensaje a procesar.
+   * @return El mensaje procesado (invertido).
    */
   private String mensajeInverso(String msj) {
     return new StringBuilder(msj).reverse().toString();
-  }  
-  
+  }    
 }

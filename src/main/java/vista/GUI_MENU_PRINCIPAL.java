@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package vista;
 
 import controlador.*;
@@ -16,21 +12,20 @@ import javax.swing.SwingWorker;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- *
- * @author Dylan Montiel Zúñiga
- * @version 3.0
+ * Clase que representa la interfaz gráfica del menú principal de la aplicación.
+ * 
+ * @author Eduardo Rojas Gomez, Dylan Montiel Zuniga
+ * @version 5.0
  */
 public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
 
-  /**
-   * Creates new form GUI_MENU_PRINCIPAL
-   */
-  private Controlador_GUI_MENU_PRINCIPAL controlador_GUI_MENU_PRINCIPAL;
-  
+  private Controlador_GUI_MENU_PRINCIPAL controlador_GUI_MENU_PRINCIPAL;  
   private CifradoRSA cifradoRSA;
-  
   private static int countRSA= 0;
-  
+
+  /**
+   * Constructor de la clase `GUI_MENU_PRINCIPAL`.
+   */  
   public GUI_MENU_PRINCIPAL() {      
     initComponents();   
     setLocationRelativeTo(null);
@@ -42,10 +37,11 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
     Jtf_Clave.setEnabled(false);
     Jcb_Algoritmo.addActionListener(controlador_GUI_MENU_PRINCIPAL);
     Jbtn_EnviarCorreo.addActionListener(controlador_GUI_MENU_PRINCIPAL);
-    
-    Jta_Entrada.setText("abcdefghijklmnopqrstuvwxy");
   }
-  
+
+  /**
+   * Abre un archivo de texto y carga su contenido en el área de entrada.
+   */  
   public void abrirTXT() {
     JFileChooser fileChooser = new JFileChooser() {
       public void addChoosableFileFilter(FileFilter filter) {
@@ -70,7 +66,10 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
       Jta_Entrada.setText(contenido);
     }
   }  
-  
+
+  /**
+   * Aplica el algoritmo de cifrado o descifrado seleccionado y muestra el resultado en el área de salida.
+   */  
   public void aplicarAlgoritmo() {
     if (Jta_Entrada.getText().isEmpty()) {
       JOptionPane.showMessageDialog(this, "Debes escribir un texto o abrir un archivo para aplicar algún algorítmo.", "Error", JOptionPane.ERROR_MESSAGE);                
@@ -165,18 +164,16 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
         CifradoBinario cifradoBinario = new CifradoBinario();
         
         if ("Cifrado".equals(operacion)) {
-          contenido = cifradoBinario.cifrado(contenido);
+          contenido = cifradoBinario.cifrar(contenido);
           
           if (contenido == null){
-            System.out.println("Error");
-            JOptionPane.showMessageDialog(this, "A ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
             return;         
           }
           
         } else {
-          contenido = cifradoBinario.descifrado(contenido);
+          contenido = cifradoBinario.descifrar(contenido);
           if (contenido == null){
-            System.out.println("Error");
             JOptionPane.showMessageDialog(this, "A ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
             return;         
           }          
@@ -192,14 +189,14 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
         }
         
         if ("Cifrado".equals(operacion)) {
-          contenido = cifradoRSA.cifrado(contenido);
+          contenido = cifradoRSA.cifrar(contenido);
           if (contenido == null){
             System.out.println("Error");
             JOptionPane.showMessageDialog(this, "A ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
             return;          
           }          
         } else {
-          contenido = cifradoRSA.descifrado(contenido);
+          contenido = cifradoRSA.descifrar(contenido);
           if (contenido == null){
             System.out.println("Error");
             JOptionPane.showMessageDialog(this, "A ocurrido un error, por favor verifica los datos ingresados y la seleccion del algoritmo.", "Error", JOptionPane.ERROR_MESSAGE); 
@@ -250,31 +247,41 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
           }
         }        
         Jta_Salida.setText(contenido);
-      }  
-
-
-
-
-
-
-
-      
+      }       
     }
   }
-  
+
+  /**
+   * Valida la clave para el cifrado por llave.
+   * 
+   * @param clave Clave ingresada.
+   * @return true si la clave es válida, false de lo contrario.
+   */  
   public boolean validarClaveCifradoPorLlave(String clave) {
     return !clave.trim().isEmpty();
   }
 
+  /**
+   * Valida la clave para el cifrado por sustitución Vigenère.
+   * 
+   * @param clave Clave ingresada.
+   * @return true si la clave es válida, false de lo contrario.
+   */  
   public boolean validarClaveSustitucionVigenere(String clave) {
     return !clave.trim().isEmpty() && clave.matches("\\d{2}") && clave.matches("\\d+");
   }  
   
+  /**
+   * Limpia las áreas de entrada y salida en la interfaz gráfica.
+   */  
   public void limpiarPantallas() {
     Jta_Entrada.setText(null);
     Jta_Salida.setText(null);
   }
 
+  /**
+   * Habilita o deshabilita el campo de clave según el algoritmo seleccionado.
+   */  
   public void habilitarClave() {
     String algoritmo = Jcb_Algoritmo.getSelectedItem().toString().trim();
     if ("Cifrado por Llave".equals(algoritmo) || 
@@ -285,6 +292,9 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
     }    
   }
 
+  /**
+   * Envía un correo con el mensaje de salida
+   */  
   public void enviarCorreo() {
     String correoDestinatario = Jtf_CorreoDestinatario.getText().trim();
     String contenido = Jta_Salida.getText();
@@ -320,6 +330,9 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
     }      
   }
 
+  /**
+   * Valida si la terminacion del correo
+   */  
   private boolean validarCorreo(String correo) {
     return correo.trim().matches("^.+@(gmail|hotmail|outlook)\\..+$");
   }

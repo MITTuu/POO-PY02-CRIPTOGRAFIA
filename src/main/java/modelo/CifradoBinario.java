@@ -1,29 +1,30 @@
 package modelo;
-//Imports especificos de funcionalidad
 
 import java.util.*;
-//Import generales del proyecto
 
 /**
  * Esta clase una abstraccion de un metodo de cifrado por codificacion binaria.
- * @author Eduardo Rojas Gomez y Dylan Montiel Zuñiga.
  * 
- * @version 15/11/2023
+ * @author Eduardo Rojas Gomez, Dylan Montiel Zuniga
+ * @version 1.0
  */
-public class CifradoBinario {
+public class CifradoBinario extends CifradoClasico {
+ 
   /**
-   * Este es el constructor de la clase CifradoRSA.
+   * Este es el constructor de la clase CifradoBinario.
    */  
-  public CifradoBinario() {
+  public CifradoBinario() {  
+    super(null);
   }
  
   /**
-   * Este metodo permite encriptar una cadena de Strings mediante el algoritmo RSA.
+   * Encripta una cadena de texto mediante el algoritmo binario.
    * 
-   * @param pCadena una cadena de caracteres la cual sera cifrada.
-   * @return Una cadena descifrado mediante el algoritmo RSA.
-   */    
-  public String cifrado(String pCadena) {
+   * @param pCadena Cadena de caracteres que será cifrada.
+   * @return Cadena cifrada mediante el algoritmo binario.
+   */
+  @Override
+  public String cifrar(String pCadena) {
     pCadena = pCadena.toLowerCase();
     StringBuilder msjCifrado = new StringBuilder();
     for (char letra : pCadena.toCharArray()) {
@@ -50,12 +51,13 @@ public class CifradoBinario {
   }
 
   /**
-   * Este metodo permite descifrar una cadena de Strings mediante el algoritmo RSA.
+   * Descifra una cadena de texto cifrada mediante el algoritmo binario.
    * 
-   * @param pCadena una cadena de caracteres.
-   * @return Una cadena descifrado mediante el algoritmo RSA.
+   * @param pCadena Cadena de caracteres cifrada.
+   * @return Cadena descifrada mediante el algoritmo binario.
    */  
-  public String descifrado(String pCadena) {
+  @Override
+  public String descifrar(String pCadena) {
     StringBuilder msjCifrado = new StringBuilder();
     
     String[] listaString = pCadena.split(" ");
@@ -179,7 +181,6 @@ public class CifradoBinario {
     }
   }  
 
-  
   /**
    * Este metodo permite obtener la letra correspondiente a un valor binario. 
    * 
@@ -265,12 +266,9 @@ public class CifradoBinario {
 
       case "11001":
         return "z";
-      
-        
+             
       default:
         return null;
     }
-  }  
-    
-  
+  }       
 }

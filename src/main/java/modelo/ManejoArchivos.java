@@ -1,8 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelo;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.BufferedWriter;
@@ -12,7 +9,7 @@ import java.io.IOException;
 /**
  * La clase ManejoArchivos proporciona métodos para leer y sobrescribir archivos.
  *
- * @author Dylan Montiel Zúñiga
+ * @author Eduardo Rojas Gomez, Dylan Montiel Zuniga
  * @version 1.0
  */
 public class ManejoArchivos {

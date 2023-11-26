@@ -1,21 +1,31 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelo;
 
 /**
+ * Clase que implementa un cifrado por llave, donde cada letra en el texto
+ * sin formato se cifra o descifra utilizando una clave proporcionada.
  *
- * @author Dylan Montiel Zúñiga
+ * @author Eduardo Rojas Gomez, Dylan Montiel Zuniga
  * @version 3.0
  */
 public class CifradoPorLlave extends CifradoClasico {  
   private String clave;
+  
+  /**
+   * Constructor que inicializa el cifrado por llave con una clave dada.
+   *
+   * @param pClave La clave a utilizar para el cifrado.
+   */  
   public CifradoPorLlave(String pClave) {
     super(pClave);
     clave = super.getClave();
   }
 
+  /**
+   * Cifra un mensaje utilizando el cifrado por llave.
+   *
+   * @param msj El mensaje a cifrar.
+   * @return El mensaje cifrado.
+   */  
   @Override
   public String cifrar(String msj) {
     StringBuilder msjCifrado = new StringBuilder();
@@ -56,6 +66,12 @@ public class CifradoPorLlave extends CifradoClasico {
     return msjCifrado.toString().trim();
   }
 
+  /**
+   * Descifra un mensaje cifrado utilizando el cifrado por llave.
+   *
+   * @param msj El mensaje cifrado a descifrar.
+   * @return El mensaje descifrado.
+   */  
   @Override
   public String descifrar(String msj) {
     StringBuilder msjDescifrado = new StringBuilder();

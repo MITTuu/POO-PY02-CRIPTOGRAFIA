@@ -1,20 +1,28 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelo;
 
 /**
+ * Clase que implementa un cifrado telefónico, donde cada letra en el texto
+ * sin formato se representa por un par de números que indican el número y la posición
+ * de la letra en un teclado telefónico.
  *
- * @author Dylan Montiel Zúñiga
+ * @author Eduardo Rojas Gomez, Dylan Montiel Zuniga
  * @version 1.0
  */
 public class CifradoTelefonico extends CifradoClasico {
 
+  /**
+   * Constructor que inicializa el cifrado telefónico sin utilizar una clave.
+   */  
   public CifradoTelefonico() {
     super(null);
   }
 
+  /**
+   * Cifra un mensaje utilizando el cifrado telefónico.
+   *
+   * @param msj El mensaje a cifrar.
+   * @return El mensaje cifrado.
+   */  
   @Override
   public String cifrar(String msj) {
     StringBuilder msjCifrado = new StringBuilder();
@@ -36,6 +44,12 @@ public class CifradoTelefonico extends CifradoClasico {
     return msjCifrado.toString().trim();
   }
 
+  /**
+   * Descifra un mensaje cifrado utilizando el cifrado telefónico.
+   *
+   * @param msj El mensaje cifrado a descifrar.
+   * @return El mensaje descifrado.
+   */  
   @Override
   public String descifrar(String msj) {
     StringBuilder msjDescifrado = new StringBuilder();
@@ -58,7 +72,12 @@ public class CifradoTelefonico extends CifradoClasico {
     return msjDescifrado.toString();
   }
 
-
+  /**
+   * Obtiene el número asociado a una letra en un teclado telefónico.
+   *
+   * @param letra La letra a buscar.
+   * @return El número asociado a la letra.
+   */
   private int obtenerNumero(char letra) {
     if ("abc".contains(String.valueOf(letra))) {
       return 2;
@@ -80,6 +99,12 @@ public class CifradoTelefonico extends CifradoClasico {
     return 0; // En caso de que no sea una letra válida
   }
 
+  /**
+   * Obtiene la posición asociada a una letra en un teclado telefónico.
+   *
+   * @param letra La letra a buscar.
+   * @return La posición asociada a la letra.
+   */  
   private int obtenerPosicion(char letra) {
     if ("abc".contains(String.valueOf(letra))) {
       return "abc".indexOf(letra) + 1;
@@ -101,6 +126,13 @@ public class CifradoTelefonico extends CifradoClasico {
     return 0; // En caso de que no sea una letra válida
   }
 
+  /**
+   * Obtiene la letra asociada a un número y posición en un teclado telefónico.
+   *
+   * @param numero   El número a buscar.
+   * @param posicion La posición a buscar.
+   * @return La letra asociada al número y posición.
+   */  
   private char obtenerLetra(int numero, int posicion) {
     switch (numero) {
       case 2 -> {

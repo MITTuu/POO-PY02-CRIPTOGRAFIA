@@ -1,17 +1,12 @@
 package modelo;
 
-//Imports especificos de funcionalidad
-
-//Import generales del proyecto
-
 /**
  * Esta es una abstraccion de una clase abstracta de cifrado moderno, la cual 
  * implementa metodos abstractos los cuales seran sera implementados por las 
  * clases hijas para cifrar datos.
  * 
- * @author Eduardo Rojas Gomez y Dylan Montiel Zuñiga.
- * 
- * @version 15/11/2023
+ * @author Eduardo Rojas Gomez, Dylan Montiel Zuniga
+ * @version 2.0
  */
 public abstract class CifradoModerno {
   public String tipoCifrado;

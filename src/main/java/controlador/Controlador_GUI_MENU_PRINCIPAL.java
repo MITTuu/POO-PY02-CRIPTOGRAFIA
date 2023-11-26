@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controlador;
 
 import java.awt.event.ActionEvent;
@@ -10,17 +6,28 @@ import javax.swing.JOptionPane;
 import vista.*;
 
 /**
- *
- * @author Dylan Montiel Zúñiga
- * @version 3.0 
+ * Clase que actúa como controlador para la interfaz gráfica del menú principal.
+ * 
+ * @author Eduardo Rojas Gomez, Dylan Montiel Zuniga
+ * @version 4.0
  */
 public class Controlador_GUI_MENU_PRINCIPAL implements ActionListener {
-
   private GUI_MENU_PRINCIPAL gui_menu_principal;
+
+  /**
+   * Constructor de la clase `Controlador_GUI_MENU_PRINCIPAL`.
+   * 
+   * @param gui_menu_principal Referencia a la interfaz gráfica del menú principal.
+   */  
   public Controlador_GUI_MENU_PRINCIPAL(GUI_MENU_PRINCIPAL gui_menu_principal) {
     this.gui_menu_principal = gui_menu_principal;
   }
-    
+
+  /**
+   * Maneja los eventos de los componentes de la interfaz gráfica.
+   * 
+   * @param evento Evento producido.
+   */ 
   @Override
   public void actionPerformed(ActionEvent evento) {
     if (evento.getActionCommand().equals("Abrir archivo TXT")) {
@@ -42,6 +49,5 @@ public class Controlador_GUI_MENU_PRINCIPAL implements ActionListener {
         }       
     }
     gui_menu_principal.habilitarClave();
-  }
-  
+  } 
 }

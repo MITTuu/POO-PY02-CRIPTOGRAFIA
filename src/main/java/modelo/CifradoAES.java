@@ -1,20 +1,16 @@
 package modelo;
 
-//Imports especificos de funcionalidad
-
 import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-//Import generales del proyecto
 /**
  * Esta clase una abstraccion de un metodo de cifrado AES. 
  * 
- * @author Eduardo Rojas Gomez y Dylan Montiel Zuñiga.
- * 
- * @version 12/11/2023
+ * @author Eduardo Rojas Gomez, Dylan Montiel Zuniga
+ * @version 2.0
  */
 public class CifradoAES extends CifradoModerno{
   
@@ -29,7 +25,6 @@ public class CifradoAES extends CifradoModerno{
     super ("Cifrado AES");
   }
 
-  
   /**
    * Este metodo permite establecer una llave con la cual se realizara el cifrado
    * y descifrado de datos.
@@ -97,6 +92,4 @@ public class CifradoAES extends CifradoModerno{
     }
     return null;
   }
-
-
 }
