@@ -315,6 +315,12 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
       return;
     }    
     
+    if (contenido.isEmpty()) {
+      // Mostrar mensaje de error para el correo
+      JOptionPane.showMessageDialog(this, "No es posible enviar un correo sin contenido", "Error", JOptionPane.ERROR_MESSAGE);
+      return;
+    }    
+    
     CuentaCorreo cuentaCorreo = new CuentaCorreo("py02.cifradodemensajes@gmail.com");
 
     if (cuentaCorreo.validarCorreo(correoDestinatario)) {     
