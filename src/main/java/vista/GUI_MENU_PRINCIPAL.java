@@ -393,6 +393,7 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setBackground(new java.awt.Color(255, 255, 255));
+    setName("frameGeneral"); // NOI18N
 
     Jl_Salida.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
     Jl_Salida.setText("Salida");
@@ -526,7 +527,8 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
         .addGap(26, 26, 26))
     );
 
-    pack();
+    setSize(new java.awt.Dimension(760, 615));
+    setLocationRelativeTo(null);
   }// </editor-fold>//GEN-END:initComponents
 
   private void Jtf_CorreoDestinatarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jtf_CorreoDestinatarioActionPerformed
@@ -576,9 +578,6 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
     });
   }
   
-  /**
-   * Objetos de la interfaz
-   */
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton Jbtn_AbrirTXT;
   private javax.swing.JButton Jbtn_AplicarAlgoritmo;
@@ -603,4 +602,5 @@ public class GUI_MENU_PRINCIPAL extends javax.swing.JFrame {
   private javax.swing.JToolBar jToolBar1;
   private java.awt.ScrollPane scrollPane1;
   // End of variables declaration//GEN-END:variables
+
 }
